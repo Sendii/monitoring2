@@ -73,8 +73,13 @@ class HomeController extends Controller
         $data['nol']           =pbbj::where('id')->count();
         $total                 = pbbj::count();
         $selesai               = prosespengadaan::whereNotNull('selesaikon')->count();
-        $data['selesaiproses'] = prosespengadaan::whereNotNull('selesaikon')->count();
-        $data['presentase']    = ($selesai / $total) * 100;
+        $data['selesaiproses'] = prosespengadaan::whereNotNull('selesaikon')->count();        
+        if ($total >= 1) {
+            $data['presentase']    = ($selesai / $total) * 100;
+        }
+        else {
+            $data['presentase']    = 0;
+        }
         return view('welcome')->with($data);
     }
     
