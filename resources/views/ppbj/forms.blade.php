@@ -99,7 +99,7 @@
                                         </div>
                                         <select name="jenispengadaan" class="form-control select2" style="width:100%;" tabindex="-1" aria-hidden="true" required>
                                             @foreach($pengadaan as $cek)
-                                            <option value="{{$cek->id}}">
+                                            <option value="{{$cek->namapengadaan}}">
                                                 {{$cek->namapengadaan}}
                                             </option>
                                             @endforeach

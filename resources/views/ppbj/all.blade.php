@@ -60,7 +60,7 @@
                                             $unitkerja = \App\unitkerja::where('aa', '=', $key->id_unit)->value('aa');
                                             $pegawai = \App\pegawai::where('namapegawai', '=', $key->id_pegawai)->value('namapegawai');
                                             $cekpenyelesaian = \App\prosespengadaan::where('id', '=', $key->id)->value('selesaikon');
-                                            $cekpengadaan = \App\pengadaan::where('id', $key->id_pengadaan)->value('namapengadaan');
+                                            $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->id_pengadaan)->value('namapengadaan');
                                         ?>
                                         <tr>
                                             <td class="center">{{$key->id}}</td>

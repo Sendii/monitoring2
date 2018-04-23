@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\prosespengadaan;
 use App\barangrealisasi;
+use App\barangrealisasi2;
 use App\unitkerja;
 use App\pengadaan;
 use App\pegawai;
@@ -39,6 +40,7 @@ class PenugasanController extends Controller
         $data['ppbjassignmentEdit'] = pbbj::find($id);
         $data['unitkerja']          = unitkerja::get();
         $data['cekpegawai']         = prosespengadaan::get();
+        $data['pegawaiaja'] = pegawai::get();
         $data['pegawaiCabang']            = pegawai::where('id_jabatan', 8)->get();
         $data['pegawaiPusat']            = pegawai::where('id_jabatan', 7)->get();
         $data['pengadaan']          = pengadaan::get();
@@ -53,6 +55,7 @@ class PenugasanController extends Controller
         $data['barangg2']    = barangrealisasi::find($id);
         $data['barangnya'] = barang::where('id', '=', $id)->get();
         $data['barangnya2'] = barangrealisasi::where('id', '=', $id)->get();
+        $data['barangnya3'] = barangrealisasi2::where('id', '=', $id)->get();
         $data['id']        = $id;
         // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
         return view('kasubag.edit')->with($data);
@@ -301,7 +304,7 @@ class PenugasanController extends Controller
 
         for ($i=0; $i < $r['rowkontrak3']; $i++)
         {
-            $new3 = new barangrealisasi;
+            $new3 = new barangrealisasi2;
             $new3->id = $table->id;
             if($r->input('rowkontrak3') != "") {
                 $new3->banyak_brg = $r->input('rowkontrak3');

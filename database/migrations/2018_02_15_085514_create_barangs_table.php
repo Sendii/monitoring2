@@ -41,6 +41,19 @@ class CreateBarangsTable extends Migration
             $table->biginteger('hargatotal_brg')->nullable();
             $table->timestamps();
         });
+        Schema::create('barangrealisasi2', function (Blueprint $table) {
+            $table->increments('id_barang');
+            $table->integer('id')->unsigned()->nullable(); //id ppbj
+            $table->foreign('id')->references('id')->on('pbbjs');
+            $table->string('kodebarang')->nullable();
+            $table->integer('banyak_brg')->nullable();
+            $table->text('nama_barang')->nullable();
+            $table->integer('jumlah_brg')->nullable();
+            $table->biginteger('harga_brg')->nullable();
+            $table->biginteger('total_brg')->nullable();
+            $table->biginteger('hargatotal_brg')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

@@ -57,7 +57,6 @@
                                             </thead>
                                             <tbody>
                                                 @if(Auth::user() && Auth::user()->akses == 'Kasubag QA')
-                                                    <h4>lu qa</h4>
                                                     @foreach($ppbjVerify as $key)
                                                         @include('kasubag.kasubag')
                                                     @endforeach
@@ -69,7 +68,6 @@
                                                         @endif
                                                     @endforeach
                                                 @elseif (Auth::user() && Auth::user()->akses == 'Kasubag Cabang')
-                                                    <h4>lu cabang</h4>
                                                     @foreach($ppbjCabang as $key)
                                                         @if ($key->status == 'Accepted')
                                                             @include('kasubag.kasubag')

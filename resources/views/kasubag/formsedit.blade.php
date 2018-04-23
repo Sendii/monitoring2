@@ -196,11 +196,22 @@
                                                         @foreach($pegawaiPusat as $key)
                                                             <option value="{{$key->namapegawai}}" {{$prosespengadaan->id_pegawai == $key->namapegawai ? 'selected' : ''}}> {{$key->namapegawai}}</option>
                                                         @endforeach
+                                                @elseif(Auth::user() && Auth::user()->akses == 'Kasubag QA')
+                                                    <option value="">Pilih Pemekerja</option>
+                                                        @foreach($pegawaiaja as $key)
+                                                            <option value="{{$key->namapegawai}}" disabled="disabled" {{$prosespengadaan->id_pegawai == $key->namapegawai ? 'selected' : ''}}> {{$key->namapegawai}}</option>
+                                                        @endforeach
+                                                @elseif(Auth::user() && Auth::user()->akses == 'Admin')
+                                                    <option value="">Pilih Pemekerja</option>
+                                                        @foreach($pegawaiaja as $key)
+                                                            <option value="{{$key->namapegawai}}" disabled="disabled" {{$prosespengadaan->id_pegawai == $key->namapegawai ? 'selected' : ''}}> {{$key->namapegawai}}</option>
+                                                        @endforeach
                                                 @endif
                                             </select>
                                         </div>
                                     </div>
                                     @if(Auth::user() && Auth::user()->akses == 'Kasubag QA')
+                                        @if($prosespengadaan->status == "")
                                         <label class="col-sm-2 control-label">Status Ppbj</label>
                                         <div class="col-sm-3">
                                             <select name="status" class="form-control select">
@@ -209,6 +220,14 @@
                                                 <option value="NonAccepted">Ditolak</option>
                                             </select>
                                         </div>
+                                        @else
+                                        <label class="col-sm-2 control-label">Status Ppbj</label>
+                                        <div class="col-sm-3">
+                                            <select name="status" class="form-control select2">
+                                                <option value="{{$prosespengadaan->status}}" readonly>{{$prosespengadaan->status}}</option>
+                                            </select>
+                                        </div>
+                                        @endif
                                     @endif
                                 </div>
                                 <div class="form-group">
@@ -316,7 +335,7 @@
                             </div>
                             @if($prosespengadaan->selesaikon == "")
                             <div class="box-footer">
-                                <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+                                <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Simpan1</button>
                             </div>
                             @endif
                             @if($prosespengadaan->selesaikon != "")
@@ -325,7 +344,7 @@
                                 @if($prosespengadaan->tgl_spph2 == "")
                                 <a id="muncul" class="btn btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;Tambah</a>
                                 @else
-                                <a id="muncul" class="btn btn-primary pull-right"><i class="fa fa-arrow-circle-down"></i>&nbsp;Lihat</a>
+                                <a id="muncul" class="btn btn-primary pull-right"><i class="fa fa-arrow-circle-down"></i>&nbsp;Lihat2</a>
                                 @endif
                             </div>
                             <!-- data realisasi pertama -->
@@ -511,17 +530,20 @@
                                                 <input type="text" name="prvendor" value="{{$prosespengadaan->vendor2}}" class="form-control" placeholder="Nama PT">
                                             </div>
                                         </div>
+                                        @if($prosespengadaan->selesaikon2 != "")
                                         <span>{{$totalhari2}}</span>
+                                        @endif
                                     </div>
                                     <div class="box-footer">
                                     @if($prosespengadaan->selesaikon2 == "")
-                                        <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+                                        <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Simpan2</button>
                                     @else
-                                        <a id="muncul2" class="btn btn-primary pull-right"><i class="fa fa-arrow-circle-down"></i>&nbsp;Lihat2</a>
+                                        <a id="muncul2" class="btn btn-primary pull-right"><i class="fa fa-arrow-circle-down"></i>&nbsp;Lihat3</a>
                                     @endif
                                     </div>
                             </div>
                             <!-- data realisasi ketiga -->
+                            @if($prosespengadaan->selesaikon2 != "")
                             <div class="row" id="addrealisasi2">
                                  <hr>
                                  <div class="form-group">
@@ -537,8 +559,8 @@
                                                 <i class="fa fa-apple"></i>
                                             </div>
                                             <?php 
-                                            $data3 = \App\barangrealisasi::where('kodebarang', '=', $prosespengadaan->kodebarang3)->count();
-                                            $data4['inidata'] = \App\barangrealisasi::where('kodebarang', '=', $prosespengadaan->kodebarang3)->get();
+                                            $data3 = \App\barangrealisasi2::where('kodebarang', '=', $prosespengadaan->kodebarang3)->count();
+                                            $data4['inidata'] = \App\barangrealisasi2::where('kodebarang', '=', $prosespengadaan->kodebarang3)->get();
                                         ?>
                                             @if($prosespengadaan->kodebarang3 != "")
                                             <input type="number" name="rowkontrak3" class="form-control" placeholder="{{$data3}}">
@@ -561,8 +583,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="tbody3">
-                                                @if($prosespengadaan->kodebarang2 != "")
-                                                    @foreach($barangnya2 as $barang2)
+                                                @if($prosespengadaan->kodebarang3 != "")
+                                                    @foreach($barangnya3 as $barang2)
                                                 <tr>
                                                     <td>
                                                         <input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" value="{{ $barang2->nama_barang }}" disabled="disabled">
@@ -708,16 +730,19 @@
                                                 <input type="text" name="pr3vendor" value="{{$prosespengadaan->vendor3}}" class="form-control" placeholder="Nama PT">
                                             </div>
                                         </div>
+                                        @if($prosespengadaan->selesaikon3 != "")
                                         <span>{{$totalhari3}}</span>
+                                        @endif
                                     </div>
                                     <div class="box-footer">
                                     @if($prosespengadaan->selesaikon3 == "")
-                                        <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+                                        <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Simpan3</button>
                                     @else
-                                        <a id="muncul2" class="btn btn-primary pull-right"><i class="fa fa-arrow-circle-down"></i>&nbsp;Lihat2</a>
+                                        <a href="{{route('allPpbj')}}" class="btn btn-primary pull-right"><i class="fa fa-arrow-circle-left"></i>&nbsp;Kembali</a>
                                     @endif
                                     </div>
                             </div>
+                        @endif
                             <script>
                                 $("#muncul").click(function () {
                                  $("#addrealisasi").addClass("show");
