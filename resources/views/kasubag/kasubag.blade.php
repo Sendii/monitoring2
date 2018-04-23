@@ -3,7 +3,7 @@
 		$unitkerja = \App\unitkerja::where('aa', '=', $key->id_unit)->value('aa');
 		$pegawai = \App\pegawai::where('namapegawai', '=', $key->id_pegawai)->value('namapegawai');
 		$cekproses = \App\prosespengadaan::where('id_ppbj', '=', $key->id)->value('selesaikon');
-		$itemspengadaan = \App\pengadaan::where('id', '=', $key->id_pengadaan)->value('namapengadaan');
+		$itemspengadaan = \App\pengadaan::where('namapengadaan', '=', $key->id_pengadaan)->value('namapengadaan');
 		$cabang = \App\pbbj::where('id_unit', $key->id_unit)->first();
 		$unit_kerjacabang = \App\unitkerja::where('unit_kerja', $cabang->id_unit)->where('unit_kerja', 'Kantor Cabang')->get();
 	?>
@@ -83,6 +83,8 @@
 				<center><span class="label label-info">Belum diVerifikasi&nbsp;<i class="fa fa-close"></i></span></center>
 			@elseif ($key->status == 'Accepted')
 				<center><span class="label label-success">Sudah di Verifikasi&nbsp;<i class="fa fa-check"></i></span></center>
+			@elseif ($key->status == 'NonAccepted')
+				<center><span class="label label-warning">Tidak terverifikasi&nbsp;<i class="fa fa-close"></i></span></center>
 			@else
 				<center><span class="label label-danger">Dikembalikan&nbsp;<i class="fa fa-close"></i></span></center>
 			@endif

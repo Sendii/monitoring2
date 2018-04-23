@@ -46,6 +46,7 @@
                                             <input type="text" name="kodePj" value=" {{$ppbjassignmentEdit->kodePj or ''}} " class="form-control" placeholder="Kode PJ" disabled="disabled">
                                             <input type="hidden" name="cekcabang" value="{{$ppbjassignmentEdit->unitkerja}}">
                                             <input type="hidden" name="status" value="{{$ppbjassignmentEdit->status}}">
+                                            <input type="hidden" name="keteranganppbj" value="{{$ppbjassignmentEdit->keterangan}}">
                                             <input type="hidden" name="id" value="{{$ppbjassignmentEdit->id}}">
                                         </div>
                                     </div>
@@ -135,6 +136,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            @if($ppbjassignmentEdit->kodebarang != "")
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1">
                                         <table class="table table-bordered table-striped">
@@ -176,6 +178,9 @@
                                         </table>
                                     </div>
                                 </div>
+                                @else
+                                <center><h3>Tidak ada data barang!</h3></center>
+                            @endif
 
                                 <!-- Penugasan dari Kasubag Ke Pegawai Utk Memonitoring ke Kepala Divisi -->
                                 <div class="form-group">
@@ -211,13 +216,71 @@
                                         </div>
                                     </div>
                                     @if(Auth::user() && Auth::user()->akses == 'Kasubag QA')
-                                        @if($prosespengadaan->status == "")
+                                        @if($prosespengadaan->status == "Pending")
                                         <label class="col-sm-2 control-label">Status Ppbj</label>
                                         <div class="col-sm-3">
-                                            <select name="status" class="form-control select">
+                                            <script type="text/javascript">
+
+   function changeFunc() {
+     var zone = document.getElementById("selectBox");
+
+    if (zone.value == "Accepted"){
+            var demo = document.getElementById("demos").classList.remove("ini");
+              return false;
+    }else if(zone.value == "NonAccepted"){
+            var demo = document.getElementById("demo").classList.remove("ini");
+;
+              return false;
+    }
+   }
+
+  </script>
+  <div></div>
+  <style type="text/css">
+      .ini {
+        display: none;
+      }
+      #demo {
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        font-family: inherit;
+        text-transform: none;
+        margin: 0;
+      }
+      #demo:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+#demo::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+#demo:-ms-input-placeholder {
+  color: #999;
+}
+#demo::-webkit-input-placeholder {
+  color: #999;
+}
+#demo::-ms-expand {
+  background-color: transparent;
+  border: 0;
+}
+  </style>
+  <input id="demo" class="ini" type="text" name="keteranganpengadaan" placeholder="Keterangans">
+                                            <select id="selectBox" onchange="changeFunc();" name="status" class="form-control select">
                                                 <option value="">Status Ppbj</option>
-                                                <option value="Accepted">Diterima</option>
-                                                <option value="NonAccepted">Ditolak</option>
+                                                <option id="diterima" value="Accepted">Diterima</option>
+                                                <option id="ditolak" value="NonAccepted">Ditolak</option>
                                             </select>
                                         </div>
                                         @else
@@ -341,7 +404,7 @@
                             @if($prosespengadaan->selesaikon != "")
                             @if(Auth::user() && Auth::user()->akses == 'Admin')
                             <div class="box-footer">
-                                @if($prosespengadaan->tgl_spph2 == "")
+                                @if($prosespengadaan->kodebarang2 == "")
                                 <a id="muncul" class="btn btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;Tambah</a>
                                 @else
                                 <a id="muncul" class="btn btn-primary pull-right"><i class="fa fa-arrow-circle-down"></i>&nbsp;Lihat2</a>
@@ -390,7 +453,7 @@
                                                         <input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" value="{{ $barang2->nama_barang }}" disabled="disabled">
                                                     </td>
                                                     <td>
-                                                        <input type="number" min="1" id="qty{{$barang->id_barang}}" name="qtykontrak[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'" oninput="calculate();" value="{{ $barang2->jumlah_brg }}">
+                                                        <input type="number" min="1" id="qty{{$barang->id_barang}}" name="qtykontrak[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'" oninput="calculate();" value="{{ $barang2->jumlah_brg }}" disabled="disabled">
                                                     </td>
                                                     <td>
                                                         <input type="number" min="1" id="harga{{$barang->id_barang}}" name="hargakontrak[]]" placeholder="Harga Satuan" id="amount" oninput="calculate();" class="form-control input-sm text-right amount harga harga'+i+'" value="{{ $barang2->harga_brg }}" disabled="disabled">
@@ -408,9 +471,9 @@
                                                         <td colspan="3"></td>
                                                         <td>
                                                             @if($prosespengadaan->kodebarang2 != "")
-                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="{{$barangg2->hargatotal_brg}}" disabled="disabled">
+                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="{{$barangg2->hargatotal_brg}}" readonly>
                                                             @else
-                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="" disabled="disabled">
+                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="" readonly>
                                                             @endif
                                                         </td>
                                                     </tfoot>
@@ -537,6 +600,8 @@
                                     <div class="box-footer">
                                     @if($prosespengadaan->selesaikon2 == "")
                                         <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Simpan2</button>
+                                    @elseif($prosespengadaan->selesaikon2 != "")
+                                        <a id="muncul2" class="btn btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;Tambah</a>
                                     @else
                                         <a id="muncul2" class="btn btn-primary pull-right"><i class="fa fa-arrow-circle-down"></i>&nbsp;Lihat3</a>
                                     @endif
@@ -608,9 +673,9 @@
                                                         <td colspan="3"></td>
                                                         <td>
                                                             @if($prosespengadaan->kodebarang3 != "")
-                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak" placeholder="Total Semua" value="{{$barangg2->hargatotal_brg}}" disabled="disabled">
+                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value="{{$barangg2->hargatotal_brg}}" readonly>
                                                             @else
-                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak" placeholder="Total Semua" value="" disabled="disabled">
+                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value="" readonly>
                                                             @endif
                                                         </td>
                                                     </tfoot>
@@ -707,7 +772,7 @@
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-calendar"></i>
                                                 </div>
-                                                <input type="text" name="pr3_tglkon2" class="form-control" placeholder="Tgl. Kontrak" id="tglprkon2" value="{{$prosespengadaan->tgl_kon3}}">
+                                                <input type="text" name="pr3_tglkon" class="form-control" placeholder="Tgl. Kontrak" id="tglprkon2" value="{{$prosespengadaan->tgl_kon3}}">
                                             </div>
                                         </div>
                                         <label class="col-sm-2 control-label">No. Kontrak</label>
@@ -796,16 +861,16 @@
                                 $(document).ready(function() {
                                     $('input[name="rowkontrak3"]').on('input', function() {
                                         var rowkontrak3 = $('input[name="rowkontrak3"]').val();
-                                        var tagkontrak = '';
+                                        var tagkontrak3 = '';
                                         for (i = 1; i <= rowkontrak3; i++) {
-                                            tagkontrak += '<tr><td><input type="text" name="namakontrak3[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak3[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak qtykontrak3' + i + '" required></td><td><input type="number" name="hargakontrak3[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga3' + i + '" required></td><td><input type="text" name="totalkontrak3[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total3' + i + '" readonly></td></tr>';
+                                            tagkontrak3 += '<tr><td><input type="text" name="namakontrak3[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak3[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak3' + i + '" required></td><td><input type="number" name="hargakontrak3[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga3' + i + '" required></td><td><input type="text" name="totalkontrak3[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total3' + i + '" readonly></td></tr>';
                                         }
-                                        $('.tbody3').html(tagkontrak);
+                                        $('.tbody3').html(tagkontrak3);
                                         subtotalkontrak3();
                                     });
 
                                     function subtotalkontrak3() {
-                                        $('.qtykontrak, .harga').on('input', function() {
+                                        $('.qtykontrak3, .harga3').on('input', function() {
                                             var rowkontrak3 = $('.tbody3 tr').length,
                                             qtykontrak = '',
                                             harga = '',

@@ -89,11 +89,31 @@
                                                         {{$value->nama_barang}}
                                                     </li>
                                                     @endforeach
+                                                    @foreach($key->Barang2 as $value)
+                                                    <li>
+                                                        {{$value->nama_barang}}
+                                                    </li>
+                                                    @endforeach
+                                                    @foreach($key->Barang3 as $value)
+                                                    <li>
+                                                        {{$value->harga_brg}}
+                                                    </li>
+                                                    @endforeach
                                                 </ul>
                                             </td>
                                             <td class="center">
                                                 <ul>
                                                     @foreach($key->Barang as $value)
+                                                    <li>
+                                                        {{$value->harga_brg}}
+                                                    </li>
+                                                    @endforeach
+                                                    @foreach($key->Barang2 as $value)
+                                                    <li>
+                                                        {{$value->harga_brg}}
+                                                    </li>
+                                                    @endforeach
+                                                    @foreach($key->Barang3 as $value)
                                                     <li>
                                                         {{$value->harga_brg}}
                                                     </li>
@@ -107,12 +127,34 @@
                                                         {{$value->jumlah_brg}}
                                                     </li>
                                                     @endforeach
+                                                    @foreach($key->Barang2 as $value)
+                                                    <li>
+                                                        {{$value->harga_brg}}
+                                                    </li>
+                                                    @endforeach
+                                                    @foreach($key->Barang3 as $value)
+                                                    <li>
+                                                        {{$value->harga_brg}}
+                                                    </li>
+                                                    @endforeach
                                                 </ul>
                                             </td>
                                             <td class="center">
                                                 <ul>
                                                     <?php $total = 0; ?>
                                                     @foreach($key->Barang as $value)
+                                                    <li>
+                                                        {{$value->total_brg }}
+                                                        <?php $total += $value->total_brg ?>
+                                                    </li>
+                                                    @endforeach
+                                                    @foreach($key->Barang2 as $value)
+                                                    <li>
+                                                        {{$value->total_brg }}
+                                                        <?php $total += $value->total_brg ?>
+                                                    </li>
+                                                    @endforeach
+                                                    @foreach($key->Barang3 as $value)
                                                     <li>
                                                         {{$value->total_brg }}
                                                         <?php $total += $value->total_brg ?>
@@ -138,11 +180,13 @@
                                                     @endif
 
                                                     @if($key->status == 'Pending')
-                                                        <span class="label label-warning">Belum di Approve</span>
+                                                        <span class="label label-info">Belum di diVerifikasi</span>
                                                     @elseif($key->status == 'Accepted')
-                                                        <span class="label label-success">Sudah di Approve</span>
+                                                        <span class="label label-success">Sudah di Verifikasi</span>
+                                                    @elseif($key->status == 'NonAccepted')
+                                                        <span class="label label-warning">Tidak di terverifikasi</span>
                                                     @else
-                                                    <b><i>Kesalahan</i></b>
+                                                    <span class="label label-danger">Dikembalikan&nbsp;<i class="fa fa-close"></i></span>
                                                     @endif
                                                 </td>
                                             </tr>

@@ -22,7 +22,7 @@ class PenugasanController extends Controller
         return view('kasubag.ppbjqaapprove')->with($data);
     }
     public function ppbjnoApprove() {
-        $data['ppbjnoapprove'] = pbbj::where('status', '=', 'Pending')->get();
+        $data['ppbjnoapprove'] = pbbj::where('status', '=', 'Pending' || '')->get();
         return view('kasubag.ppbjqanoapprove')->with($data);
     }
     public function receivePpbj()
@@ -137,10 +137,10 @@ class PenugasanController extends Controller
         }
         $table->vendor = $r->input('vendor');
         $table->status = $r->input('status');
-        if($r->input('keterangan') == "") {
+        if($r->input('keteranganpengadaan') == "") {
             $table->keterangan = "";
         }else{
-            $table->keterangan = $r->input('keterangan');
+            $table->keterangan = $r->input('keteranganpengadaan');
         }
         $table->status = $r->input('status');
         $table->save();
