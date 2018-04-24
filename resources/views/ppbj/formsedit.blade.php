@@ -155,6 +155,7 @@
                                             <td>
                                                 <input type="text" id="total{{$barang->id_barang}}" name="total[{{ $barang->id_barang }}]" placeholder="Total Harga" class="form-control input-sm text-right amount total total'+i+'" value="{{ $barang->total_brg }}" readonly>
                                             </td>
+                                            <th class="removes">Hapus</th>
                                         </tr>
                                         @endforeach
                                     @endif
@@ -243,6 +244,9 @@
                 startDate: today,
                 useCurrent: false,
                 autoclose: true
+            });
+            $(".removes").click(function() {
+                $(this).parent().remove();
             });
         </script>
 </body>

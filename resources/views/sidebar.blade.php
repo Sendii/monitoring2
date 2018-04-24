@@ -223,8 +223,8 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href=" {{url('/inputPpbj')}} "><i class="fa fa-plus-square"></i> Tambah Data </a></li>
                             <li><a href=" {{url('/allPpbj')}} "><i class="fa fa-desktop"></i> Lihat Data</a></li>
+                            <li><a href=" {{url('/inputPpbj')}} "><i class="fa fa-plus-square"></i> Tambah Data </a></li>
                         </ul>
                     </li>
                     <li class="treeview">

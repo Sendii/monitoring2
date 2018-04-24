@@ -69,9 +69,11 @@ class PegawaiController extends Controller
     public function ppbjPegawai($namapegawai) {
         $pegawai = pbbj::where('id_pegawai', '=', $namapegawai)->get();
         $ppbj = pbbj::select('no_ppbj')->groupBy('no_ppbj')->where('id_pegawai', $namapegawai)->get();
+        $prosespengadaan = prosespengadaan::get();
         return view('pegawai.ppbj', [
             'ppbjPegawai' => $pegawai,
-            'ppbj' => $ppbj
+            'ppbj' => $ppbj,
+            'prosespengadaans' => $prosespengadaan
         ]);
     }
 

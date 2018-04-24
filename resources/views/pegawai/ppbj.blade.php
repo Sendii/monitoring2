@@ -31,9 +31,31 @@
                             </div>
                         </div>
                         <!-- /.box-header -->
+                        @foreach($prosespengadaans as $prosespengadaan)
+                        <?php 
+                                            $awal1  = strtotime($prosespengadaan->mulaippbj1);
+                                            $akhir1 = strtotime($prosespengadaan->selesaikon); // Waktu sekarang
+                                            $diffe1  = $akhir1 - $awal1;
+
+                                            $awal2  = strtotime($prosespengadaan->mulaippbj2);
+                                            $akhir2 = strtotime($prosespengadaan->selesaikon2); // Waktu sekarang
+                                            $diffe2  = $akhir2 - $awal2;
+
+                                            $awal3  = strtotime($prosespengadaan->mulaippbj3);
+                                            $akhir3 = strtotime($prosespengadaan->selesaikon3); // Waktu sekarang
+                                            $diffe3  = $akhir3 - $awal3;
+                                            $a = ' ';
+                                            $totalhari1 = 'Waktu pengerjaan dengan vendor '.$prosespengadaan->vendor.$a. floor($diffe1 / (60 * 60  * 24) + 1) . ' hari';
+                                            $totalhari2 = 'Waktu pengerjaan dengan vendor '.$prosespengadaan->vendor2.$a. floor($diffe2 / (60 * 60  * 24) + 1) . ' hari';
+                                            $totalhari3 = 'Waktu pengerjaan dengan vendor '.$prosespengadaan->vendor3.$a. floor($diffe3 / (60 * 60  * 24) + 1) . ' hari';
+                                            echo "$totalhari1";
+                        ?>
+                        @endforeach
                             <div class="box-body">
                                 <i>Lihat Ppbj Berdasarkan Perhitungan Hari <br></i>
-                                <a href="#a" class="btn btn-primary">Ppbj 9 Hari</a>&nbsp;<a href="#b" class="btn btn-primary">Ppbj >9 Hari</a>&nbsp;<a href="#c" class="btn btn-primary">Ppbj <9 Hari</a>
+                                <a href="#a" class="btn btn-primary">Ppbj 9 Hari</a>&nbsp;
+                                <a href="#b" class="btn btn-primary">Ppbj >9 Hari</a>&nbsp;
+                                <a href="#c" class="btn btn-primary">Ppbj <9 Hari</a>
                                     @foreach($ppbj as $key)<br>
                                     <a href="{{route('ppbjPegawais', [$key->no_ppbj])}}">{{$key->no_ppbj}}</a>
                                     @endforeach

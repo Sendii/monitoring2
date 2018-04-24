@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+@extends('layouts.adminlte')
+@include('sidebar')
+<form class="form-horizontal" method="POST" action="{{ url('savePpbjs/'.$ppbjassignmentEdit->id)}}">
+	<input type="hidden" name="id" value="{{$ppbjassignmentEdit->id}}">	
+@foreach($barangnya as $barang)
+<input type="hidden" name="id_barang[]" value="{{ $barang->id_barang }}">
+@endforeach
+	<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -132,7 +139,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-apple"></i>
                                             </div>
-                                            <input type="number" name="row" value="{{$jumlahppbj1}}" class="form-control" placeholder="Masukan angka..." readonly>
+                                            <input type="number" name="row" value="{{$jumlahppbj1}}" class="form-control" placeholder="Masukan angka..."  readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +168,7 @@
                                                 <input type="number" min="1" id="harga{{$barang->id_barang}}" name="harga[{{ $barang->id_barang }}]" placeholder="Harga Satuan" id="amount" oninput="calculate1();" class="form-control input-sm text-right amount harga harga'+i+'" value="{{ $barang->harga_brg }}">
                                             </td>
                                             <td>
-                                                <input type="text" id="total{{$barang->id_barang}}" name="total[{{ $barang->id_barang }}]" placeholder="Total Harga" class="form-control input-sm text-right amount total total1'+i+'" value="{{ $barang->total_brg }}" readonly>
+                                                <input type="text" id="total{{$barang->id_barang}}" name="total[{{ $barang->id_barang }}]" placeholder="Total Harga" class="form-control input-sm text-right amount total total1'+i+'" value="{{ $barang->total_brg }}" >
                                             </td>
                                             <th class="removes">Hapus</th>
                                         </tr>
@@ -287,7 +294,7 @@
                                         <label class="col-sm-2 control-label">Status Ppbj</label>
                                         <div class="col-sm-3">
                                             <select name="status" class="form-control select2">
-                                                <option value="{{$prosespengadaan->status}}" readonly>{{$prosespengadaan->status}}</option>
+                                                <option value="{{$prosespengadaan->status}}"  readonly>{{$prosespengadaan->status}}</option>
                                             </select>
                                         </div>
                                         @endif
@@ -503,9 +510,9 @@
                                                         <td colspan="3"></td>
                                                         <td>
                                                             @if($prosespengadaan->kodebarang2 != "")
-                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="{{$barangg2->hargatotal_brg}}" readonly>
+                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="{{$barangg2->hargatotal_brg}}"  readonly>
                                                             @else
-                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="" readonly>
+                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value=""  readonly>
                                                             @endif
                                                         </td>
                                                     </tfoot>
@@ -706,9 +713,9 @@
                                                         <td colspan="3"></td>
                                                         <td>
                                                             @if($prosespengadaan->kodebarang3 != "")
-                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value="{{$barangg3->hargatotal_brg}}" readonly>
+                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value="{{$barangg3->hargatotal_brg}}"  readonly>
                                                             @else
-                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value="" readonly>
+                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value=""  readonly>
                                                             @endif
                                                         </td>
                                                     </tfoot>
@@ -859,7 +866,7 @@
                                         var rowkontrak = $('input[name="rowkontrak"]').val();
                                         var tagkontrak = '';
                                         for (i = 1; i <= rowkontrak; i++) {
-                                            tagkontrak += '<tr><td><input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak qtykontrak' + i + '" required></td><td><input type="number" name="hargakontrak[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga' + i + '" required></td><td><input type="text" name="totalkontrak[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total' + i + '" readonly></td></tr>';
+                                            tagkontrak += '<tr><td><input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak qtykontrak' + i + '" required></td><td><input type="number" name="hargakontrak[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga' + i + '" required></td><td><input type="text" name="totalkontrak[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total' + i + '"  readonly></td></tr>';
                                         }
                                         $('.tbody').html(tagkontrak);
                                         subtotalkontrak();
@@ -897,7 +904,7 @@
                                         var rowkontrak3 = $('input[name="rowkontrak3"]').val();
                                         var tagkontrak3 = '';
                                         for (i = 1; i <= rowkontrak3; i++) {
-                                            tagkontrak3 += '<tr><td><input type="text" name="namakontrak3[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak3[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak3' + i + '" required></td><td><input type="number" name="hargakontrak3[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga3' + i + '" required></td><td><input type="text" name="totalkontrak3[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total3' + i + '" readonly></td></tr>';
+                                            tagkontrak3 += '<tr><td><input type="text" name="namakontrak3[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak3[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak3' + i + '" required></td><td><input type="number" name="hargakontrak3[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga3' + i + '" required></td><td><input type="text" name="totalkontrak3[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total3' + i + '"  readonly></td></tr>';
                                         }
                                         $('.tbody3').html(tagkontrak3);
                                         subtotalkontrak3();
@@ -1042,3 +1049,4 @@
 </body>
 
 </html>
+</form>

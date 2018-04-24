@@ -16,12 +16,12 @@ Route::get('/', function () {
 });
 Route::get('test', 'HomeController@getChart');
 // Route::get('pagenotfound', ['as' => 'notfound', 'uses' => 'HomeController@pagenotfound']);
-Route::post('/', 'HomeController@contactme')->name('contactme')->middleware('auth');
+Route::post('/', 'HomeController@contactme')->name('contactme');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('profile/', 'HomeController@profile')->middleware('auth');
 Auth::routes();
-Route::get('home', 'HomeController@index')->name('home');
+Route::get('home', 'HomeController@index')->name('home')->middleware('auth');;
 Route::get('ppbjcabang', 'BppjController@viewppbjcabang')->name('viewppbjcabang');
 Route::get('ppbjpusat', 'BppjController@viewppbjpusat')->name('viewppbjpusat');
 Route::get('/info','HomeController@info');
@@ -33,21 +33,23 @@ Route::middleware(['publicpeople'])->group(function () {
 	Route::get('userspeople', 'HomeController@userpeople')->name('userpeople');
 });
 
-Route::middleware(['admin']&&['kadiv'])->group(function () {
-	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai')->middleware('auth');
-	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit')->middleware('auth');
-	Route::get('/alluser', 'HomeController@alluser')->name('alluser')->middleware('auth');
-	Route::get('/viewAlldata/{id}', 'MonitoringController@viewAlldata')->name('viewAlldata')->middleware('auth');
-	Route::get('/alljenis', 'PengadaanController@alljenis')->name('alljenis')->middleware('auth');
-	Route::get('/allsaran', 'HomeController@allsaran')->name('allsaran')->middleware('auth');
+Route::middleware(['admin']&&['kadiv']&&['auth'])->group(function () {
+	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
+	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
+	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
+	Route::get('/viewAlldata/{id}', 'MonitoringController@viewAlldata')->name('viewAlldata');
+	Route::get('/alljenis', 'PengadaanController@alljenis')->name('alljenis');
+	Route::get('/allsaran', 'HomeController@allsaran')->name('allsaran');
 	Route::get('/viewsaran/{id}', 'HomeController@viewsaran');
 });
 
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['admin']&&['auth'])->group(function () {
 	Route::get('/admin', 'HomeController@index')->name('home');
 	Route::post('realisasiPpbj', 'BppjController@prosesrealisasi')->name('prosesrealisasi');
 	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
 	Route::get('/inputPpbj', 'BppjController@addPpbj');
+	Route::get('inputPpbjs/{id}', 'PenugasanController@addPpbjs');
+	Route::post('savePpbjs/{id}', 'PenugasanController@savePpbjs');
 	Route::post('/savePpbj/', 'BppjController@savePpbj');
 	Route::get('/editPpbj/{id}','BppjController@editPpbj')->name('editPpbj');
 	Route::post('/editPpbj/', 'BppjController@updatePpbj')->name('updatePpbj');
@@ -72,18 +74,18 @@ Route::middleware(['admin'])->group(function () {
 	Route::get('/editpengadaan/{id}', 'PengadaanController@edit')->name('editpengadaan');
 	Route::post('editpengadaan', 'PengadaanController@update');
 	Route::get('viewppbj/{id_unit}', 'UnitKerjaController@viewPpbj')->name('viewPpbj');
-	Route::get('/unitcabang', 'UnitKerjaController@allCabang')->middleware('auth');
-	Route::get('viewppbj/unitcabang/{id_unit}', 'UnitKerjaController@viewPpbj')->middleware('auth')->name('viewPpbjcabang');
-	Route::get('/unitpusat', 'UnitKerjaController@allPusat')->middleware('auth');
-	Route::get('viewppbj/unitpusat/{id_unit}', 'UnitKerjaController@viewPpbj')->middleware('auth')->name('viewPpbjpusat');
-	Route::get('viewppbj/items/{id_pengadaan}', 'PengadaanController@viewPpbj')->middleware('auth')->name('viewPpbjitems');
-	Route::get('pegawai/ppbj/{random}/{namapegawai}', 'PegawaiController@ppbjPegawai')->middleware('auth')->name('ppbjPegawai');
-	Route::get('pegawai/ppbj/{no_ppbj}', 'PegawaiController@ppbjPegawaigan')->middleware('auth')->name('ppbjPegawais');
+	Route::get('/unitcabang', 'UnitKerjaController@allCabang');
+	Route::get('viewppbj/unitcabang/{id_unit}', 'UnitKerjaController@viewPpbj')->name('viewPpbjcabang');
+	Route::get('/unitpusat', 'UnitKerjaController@allPusat');
+	Route::get('viewppbj/unitpusat/{id_unit}', 'UnitKerjaController@viewPpbj')->name('viewPpbjpusat');
+	Route::get('viewppbj/items/{id_pengadaan}', 'PengadaanController@viewPpbj')->name('viewPpbjitems');
+	Route::get('pegawai/ppbj/{random}/{namapegawai}', 'PegawaiController@ppbjPegawai')->name('ppbjPegawai');
+	Route::get('pegawai/ppbj/{no_ppbj}', 'PegawaiController@ppbjPegawaigan')->name('ppbjPegawais');
 });
-Route::middleware(['kasubag'])->group(function () {
-	Route::get('/receivePpbj', 'PenugasanController@receivePpbj')->name('receivePpbj')->middleware('auth');
-	Route::get('/receivePpbj/approve/', 'PenugasanController@ppbjApprove')->name('ppbjApprove')->middleware('auth');
-	Route::get('/receivePpbj/noapprove/', 'PenugasanController@ppbjnoApprove')->name('ppbjnoApprove')->middleware('auth');
+Route::middleware(['kasubag']&&['auth'])->group(function () {
+	Route::get('/receivePpbj', 'PenugasanController@receivePpbj')->name('receivePpbj');
+	Route::get('/receivePpbj/approve/', 'PenugasanController@ppbjApprove')->name('ppbjApprove');
+	Route::get('/receivePpbj/noapprove/', 'PenugasanController@ppbjnoApprove')->name('ppbjnoApprove');
 	Route::get('addAsignment/{id}', 'PenugasanController@addAsignment')->name('addAsignment');
 	Route::post('saveAssignment', 'PenugasanController@saveAssignment')->name('saveAsignment');
 	Route::get('editassignmentPpbj/{id}', 'PenugasanController@editassignmentPpbj');

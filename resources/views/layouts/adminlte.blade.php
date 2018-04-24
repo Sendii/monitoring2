@@ -10,7 +10,6 @@
 <!-- Ionicons -->
 <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}} ">
 <!-- jvectormap -->
-<link rel="stylesheet" href="{{asset('bower_components/jvectormap/jquery-jvectormap.css')}}">
 <!-- Theme style -->
 <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
 <!-- AdminLTE Skins. Choose a skin from the css/skins
