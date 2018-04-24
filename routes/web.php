@@ -33,7 +33,7 @@ Route::middleware(['publicpeople'])->group(function () {
 	Route::get('userspeople', 'HomeController@userpeople')->name('userpeople');
 });
 
-Route::middleware(['admin']&&['kadiv']&&['auth'])->group(function () {
+Route::middleware(['admin', 'kadiv', 'auth'])->group(function () {
 	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
 	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
 	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
@@ -43,10 +43,10 @@ Route::middleware(['admin']&&['kadiv']&&['auth'])->group(function () {
 	Route::get('/viewsaran/{id}', 'HomeController@viewsaran');
 });
 
-Route::middleware(['admin']&&['auth'])->group(function () {
+Route::middleware(['admin', 'auth'])->group(function () {
 	Route::get('/admin', 'HomeController@index')->name('home');
 	Route::post('realisasiPpbj', 'BppjController@prosesrealisasi')->name('prosesrealisasi');
-	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
+	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj')->middleware('auth');
 	Route::get('/inputPpbj', 'BppjController@addPpbj');
 	Route::get('inputPpbjs/{id}', 'PenugasanController@addPpbjs');
 	Route::post('savePpbjs/{id}', 'PenugasanController@savePpbjs');
@@ -82,7 +82,7 @@ Route::middleware(['admin']&&['auth'])->group(function () {
 	Route::get('pegawai/ppbj/{random}/{namapegawai}', 'PegawaiController@ppbjPegawai')->name('ppbjPegawai');
 	Route::get('pegawai/ppbj/{no_ppbj}', 'PegawaiController@ppbjPegawaigan')->name('ppbjPegawais');
 });
-Route::middleware(['kasubag']&&['auth'])->group(function () {
+Route::middleware(['kasubag', 'auth'])->group(function () {
 	Route::get('/receivePpbj', 'PenugasanController@receivePpbj')->name('receivePpbj');
 	Route::get('/receivePpbj/approve/', 'PenugasanController@ppbjApprove')->name('ppbjApprove');
 	Route::get('/receivePpbj/noapprove/', 'PenugasanController@ppbjnoApprove')->name('ppbjnoApprove');

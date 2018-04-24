@@ -357,10 +357,13 @@ class PenugasanController extends Controller
 
     public function savePpbjs(Request $r, $id)
     {
+        dd($r->input('id_pegawai'));
         $newppbj = new pbbj;
         $newprosespengadaan = new prosespengadaan;
         $newbarang1 = new barangrealisasi;
         $newbarang2 = new barangrealisasi2;
+        $newppbj->id = $r->input('id');
+        $newppbj->id_pegawai = $r->input('id_pegawai');
         $idproses  = prosespengadaan::where('id_ppbj', '=', $id)->value('id');
         $newproses = pbbj::find($id);
         $table     = prosespengadaan::find($idproses);

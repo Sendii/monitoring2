@@ -287,7 +287,7 @@
                                         <label class="col-sm-2 control-label">Status Ppbj</label>
                                         <div class="col-sm-3">
                                             <select name="status" class="form-control select2">
-                                                <option value="{{$prosespengadaan->status}}" readonly>{{$prosespengadaan->status}}</option>
+                                                <option value="{{$prosespengadaan->status}}" readonly  {{$prosespengadaan->status == 'NonAccepted'}} ? : 'selected' ''>{{$prosespengadaan->status}}</option>
                                             </select>
                                         </div>
                                         @endif
@@ -324,6 +324,17 @@
                                         <input type="text" name="p_tgletp" class="form-control" placeholder="Tgl. Etp" id="tgletp" value="{{$prosespengadaan->tgl_etp}}" >
                                     </div>
                                 </div>
+                                @if($prosespengadaan->keterangan != "")
+                                    <label class="col-sm-2 control-label">Keterangan</label>
+                                    <div class="col-sm-3">
+                                        <div class="input-group text">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-apple"></i>
+                                            </div>
+                                            <input type="text" name="row" value="{{$prosespengadaan->keterangan or ''}}" class="form-control" placeholder="Keterangan" readonly>
+                                        </div>
+                                    </div>
+                                    @endif
                             </div>
                         @if($ppbjassignmentEdit->kodebarang != "")
                             @if($barang->hargatotal_brg >= 1000000000)
