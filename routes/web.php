@@ -14,8 +14,8 @@
 Route::get('/', function () {
 	return view('landing-page');
 });
-Route::get('test', 'HomeController@getChart');
 // Route::get('pagenotfound', ['as' => 'notfound', 'uses' => 'HomeController@pagenotfound']);
+Route::get('test', 'HomeController@getChart');
 Route::post('/', 'HomeController@contactme')->name('contactme');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
