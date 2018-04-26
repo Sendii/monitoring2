@@ -13,8 +13,11 @@ class CreatePbbjsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pbbjs', function (Blueprint $table) {
+        Schema::create('ppbjs', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('selesai1')->nullable();
+            $table->text('selesai2')->nullable();
+            $table->text('selesai3')->nullable();
             $table->text('id_pegawai')->nullable(); //Mengambil data dari tabel pegawai dengan id_pegawai
             $table->text('id_unit'); //Mengambil data dari tabel unit dengan id_unit
             $table->string('kodebarang')->nullable()->unique();
@@ -40,6 +43,6 @@ class CreatePbbjsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pbbjs');
+        Schema::dropIfExists('ppbjs');
     }
 }

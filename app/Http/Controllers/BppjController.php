@@ -17,8 +17,12 @@ use DB;
 class BppjController extends Controller
 {
   public function allPpbj() {
-    $data['ppbjall'] = pbbj::with('Barang')->orderBy('id', 'desc')->paginate(20);
+    $data['ppbjall'] = pbbj::with('Barang')->with('getProsespengadaan')->orderBy('id', 'desc')->paginate(20);
     $data['hehe'] = pbbj::select('no_ppbj')->groupBy('no_ppbj')->get();
+    $a = prosespengadaan::where([
+                                  ['id_pegawai', '=', 'Pak Taufiq'],
+                                  ['selesai1', '>=', '1']
+                                ])->get();
     $data['barangall'] = barang::get();
     return view('ppbj.all')->with($data);
   }
@@ -47,6 +51,7 @@ class BppjController extends Controller
         $new->id_unit = $r->input('id_unit');
         $random = str_random(30);
 
+        $new->keterangan = $r->input('keterangan');
         if($new->id_unit == "Cabang Balikpapan"){
           $new->unitkerja = 'Kantor Cabang';
         }elseif($new->id_unit == "Bandar Lampung") {
@@ -146,6 +151,7 @@ class BppjController extends Controller
        $newprosesrealisasi = new prosesrealisasi;
        $newprosespengadaan->id_pegawai = $r->input('id_pegawai');
         $newprosespengadaan->id_ppbj = $newproses->id; //id prosespengadaan == id ppbj 
+        $newprosespengadaan->keterangan = $new->keterangan;
         $newprosesrealisasi->id_ppbj = $newproses->id;
         $newprosesrealisasi->save();
         $newprosespengadaan->save();
@@ -250,5 +256,16 @@ class BppjController extends Controller
         // dd($ppbj);
 
     return view('ppbjview')->with($ppbj);
+  }
+
+  public function ppbjselesai() {
+    $data['this_page'] = basename($_SERVER['REQUEST_URI']);
+    $data['prosespengadaan'] = prosespengadaan::with('getPpbj')->where('selesai1', '<=', 1)->get();
+
+    return view('ppbj.ppbjselesai')->with($data);
+  }
+
+  public function ppbjbelumselesai() {
+
   }
 }

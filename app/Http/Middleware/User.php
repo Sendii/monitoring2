@@ -18,13 +18,17 @@ class User
 
     //1=Kasubag, 2=ADMIN, 3=Kadiv 
     {
-        if (Auth::user() &&  Auth::user()->akses == 'Kasubag Pusat' || 'Kasubag QA' || 'Kasubag Cabang') {
+        if (Auth::user() &&  Auth::user()->akses == 'Kasubag Pusat') {
             return $next($request);
-     }elseif(Auth::user() &&  Auth::user()->akses == 'Admin') {
+        }elseif (Auth::user() &&  Auth::user()->akses == 'Kasubag QA') {
+            return $next($request);
+        }elseif (Auth::user() &&  Auth::user()->akses == 'Kasubag Cabang') {
+            return $next($request);
+        }elseif(Auth::user() &&  Auth::user()->akses == 'Admin') {
         return redirect('admin');
-     }elseif(Auth::user() &&  Auth::user()->akses == 'Kadiv') {
+        }elseif(Auth::user() &&  Auth::user()->akses == 'Kadiv') {
         return redirect('monitoring');
-     }
+    }
 
     return redirect('/userspeople');
     }

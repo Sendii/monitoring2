@@ -46,7 +46,7 @@ class PenugasanController extends Controller
         $data['pengadaan']          = pengadaan::get();
         $idproses                   = prosespengadaan::where('id_ppbj', '=', $id)->value('id');
         if (!$idproses == null) {
-            $data['prosespengadaan'] = prosespengadaan::find($idproses);
+            $data['prosespengadaan'] = prosespengadaan::with('getPpbj')->find($idproses);
         }
         $data['jumlahppbj1']    = barang::where('id', '=', $id)->count();
         $data['jumlahppbj2'] = barangrealisasi::where('id', '=', $id)->count();
@@ -110,9 +110,11 @@ class PenugasanController extends Controller
 
         if ($r->input('p_nokon') == "") {
             $table->no_kon = "";
+            $newproses->selesai1 = $r->input('selesaivendor1');
         } else {
             $table->no_kon     = $r->input('p_nokon');
             $table->selesaikon = date('d-m-Y');
+            $newproses->selesai1 = $r->input('selesaivendorr1');
         }
 
         if($r->input('p_tglpsi') == "") {
@@ -277,6 +279,9 @@ class PenugasanController extends Controller
         }
         $table->vendor3 = $r->input('pr3vendor');
 
+        $table->selesai1 = $newproses->selesai1;
+        $table->selesai2 = $newproses->selesai2;
+        $table->selesai3 = $newproses->selesai3;
         $table->save();
         
         $newproses->status = $r->input('status');
@@ -357,18 +362,23 @@ class PenugasanController extends Controller
 
     public function savePpbjs(Request $r, $id)
     {
-        dd($r->input('id_pegawai'));
-        $newppbj = new pbbj;
-        $newprosespengadaan = new prosespengadaan;
-        $newbarang1 = new barangrealisasi;
-        $newbarang2 = new barangrealisasi2;
-        $newppbj->id = $r->input('id');
-        $newppbj->id_pegawai = $r->input('id_pegawai');
         $idproses  = prosespengadaan::where('id_ppbj', '=', $id)->value('id');
-        $newproses = pbbj::find($id);
-        $table     = prosespengadaan::find($idproses);
+        $newproses = new pbbj;
+        $table     = new prosespengadaan;
         $kodebarang = str_random(30);
         $kodebarang2 = str_random(30);
+        $newproses->id_unit = $r->input('id_unit');
+        $newproses->no_regis_umum = $r->input('noregisumum');
+        $newproses->unitkerja = $r->input('cekcabang');
+        $newproses->kodePj = $r->input('kodePj');
+        $newproses->no_ppbj = $r->input('noppbj');
+        $newproses->tgl_regis_umum = $r->input('tglregisumum');
+        $newproses->tgl_permintaan_ppbj = $r->input('tglpermintaanppbj');
+        $newproses->tgl_dibutuhkan_ppbj = $r->input('tgldibutuhkanppbj');
+        $newproses->id_pengadaan = $r->input('jenispengadaan');
+        $newproses->id_unit = $r->input('id_unit');
+        $newproses->namapengadaan = $r->input('namapengadaan');
+
         if($r->input('id_pegawai') != "") {
             $table->id_pegawai = $r->input('id_pegawai');
             $table->mulaippbj1 = date('d-m-Y');
@@ -410,9 +420,11 @@ class PenugasanController extends Controller
 
         if ($r->input('p_nokon') == "") {
             $table->no_kon = "";
+            $newproses->selesai1 = $r->input('selesaivendor1');
         } else {
             $table->no_kon     = $r->input('p_nokon');
             $table->selesaikon = date('d-m-Y');
+            $newproses->selesai1 = $r->input('selesaivendorr1');
         }
 
         if($r->input('p_tglpsi') == "") {
@@ -584,6 +596,22 @@ class PenugasanController extends Controller
         $newproses->keterangan = $table->keterangan;
         $newproses->id_pegawai = $table->id_pegawai; //id prosespengadaan == id ppbj 
         $newproses->save();
+
+        for ($i=0; $i < $r['row']; $i++)
+        {
+            $new1 = new barang;
+            $new1->id = $new->id;
+            if($r->input('row') != "") {
+                $new1->banyak_brg = $r->input('row');
+                $new1->kodebarang = $new->kodebarang;
+            }
+            $new1->nama_barang= $r['nama'][$i];
+            $new1->jumlah_brg= $r['qty'][$i]; 
+            $new1->harga_brg= $r['harga'][$i]; 
+            $new1->total_brg= $r['total'][$i];  
+            $new1->hargatotal_brg= $r->input('subtotal'); 
+            $new1->save();
+       }
 
         for ($i=0; $i < $r['rowkontrak']; $i++)
         {

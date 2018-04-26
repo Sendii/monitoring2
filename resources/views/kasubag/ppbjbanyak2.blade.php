@@ -43,7 +43,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-apple"></i>
                                             </div>
-                                            <input type="text" name="kodePj" value=" {{$ppbjassignmentEdit->kodePj or ''}} " class="form-control" placeholder="Kode PJ" disabled="disabled">
+                                            <input type="text" name="kodePj" value=" {{$ppbjassignmentEdit->kodePj or ''}} " class="form-control" placeholder="Kode PJ" readonly>
                                             <input type="hidden" name="cekcabang" value="{{$ppbjassignmentEdit->unitkerja}}">
                                             <input type="hidden" name="status" value="{{$ppbjassignmentEdit->status}}">
                                             <input type="hidden" name="keteranganppbj" value="{{$ppbjassignmentEdit->keterangan}}">
@@ -56,7 +56,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-apple"></i>
                                             </div>
-                                            <input type="text" name="noregisumum" value=" {{$ppbjassignmentEdit->no_regis_umum or ''}} " class="form-control" id="inputPassword3" placeholder="No. Regis Umum" disabled="disabled">
+                                            <input type="text" name="noregisumum" value=" {{$ppbjassignmentEdit->no_regis_umum or ''}} " class="form-control" id="inputPassword3" placeholder="No. Regis Umum" readonly>
                                         </div>
                                     </div>
                                     <label class="col-sm-1 control-label">No. Ppbj</label>
@@ -65,7 +65,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-apple"></i>
                                             </div>
-                                            <input type="text" name="noppbj" value=" {{$ppbjassignmentEdit->no_ppbj or ''}} " class="form-control" id="inputPassword3" placeholder="No. Ppbj" disabled="disabled">
+                                            <input type="text" name="noppbj" value=" {{$ppbjassignmentEdit->no_ppbj or ''}} " class="form-control" id="inputPassword3" placeholder="No. Ppbj" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" name="tglregisumum" value="{{date($ppbjassignmentEdit->tgl_regis_umum)}}" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum" disabled="disabled">
+                                            <input type="text" name="tglregisumum" value="{{date($ppbjassignmentEdit->tgl_regis_umum)}}" class="form-control" id="inputPassword3" placeholder="Tgl. Regis Umum" readonly>
                                         </div>
                                     </div>
                                     <label class="col-sm-2 control-label">Tgl. Permintaan Ppbj</label>
@@ -85,7 +85,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" name="tglpermintaanppbj" value="{{date($ppbjassignmentEdit->tgl_permintaan_ppbj)}}" class="form-control" id="inputPassword3" placeholder="Tgl Permintaan Ppbj" disabled="disabled">
+                                            <input type="text" name="tglpermintaanppbj" value="{{date($ppbjassignmentEdit->tgl_permintaan_ppbj)}}" class="form-control" id="inputPassword3" placeholder="Tgl Permintaan Ppbj" readonly>
                                         </div>
                                     </div>
                                     <label class="col-sm-1 control-label">Tgl. Dibutuhkan</label>
@@ -94,22 +94,20 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" name="tgldibutuhkanppbj" value="{{date($ppbjassignmentEdit->tgl_dibutuhkan_ppbj)}}" class="form-control" id="inputPassword3" placeholder="Tgl Dibutuhkan center" disabled="disabled">
+                                            <input type="text" name="tgldibutuhkanppbj" value="{{date($ppbjassignmentEdit->tgl_dibutuhkan_ppbj)}}" class="form-control" id="inputPassword3" placeholder="Tgl Dibutuhkan center" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Jenis Pengadaan</label>
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-3">
                                         <div class="input-group text">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-apple"></i>
                                             </div>
-                                            <input type="text" name="jenispengadaan" class="form-control" placeholder="Jenis Pengadaan" value=" {{$ppbjassignmentEdit->id_pengadaan or ''}} " disabled="disabled">
+                                            <input type="text" name="jenispengadaan" class="form-control" placeholder="Jenis Pengadaan" value=" {{$ppbjassignmentEdit->id_pengadaan or ''}} " readonly>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="col-sm-2 control-label">Unit Kerja</label>
                                     <div class="col-sm-3">
                                         <div class="input-group text">
@@ -126,13 +124,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                <label class="col-sm-2 control-label">Nama Pengadaan</label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="namapengadaan" class="form-control" placeholder="Nama Pengadaan" required value="{{$ppbjassignmentEdit->namapengadaan}}">
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-2 control-label">Jumlah Barang/Jasa</label>
                                     <div class="col-sm-3">
                                         <div class="input-group text">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-apple"></i>
                                             </div>
-                                            <input type="number" name="row" value="{{$jumlahppbj1}}" class="form-control" placeholder="Masukan angka..." readonly>
+                                            <input type="number" name="row" value="{{$jumlahppbj1}}" class="form-control" placeholder="Masukan angka..."  readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +167,7 @@
                                                 <input type="number" min="1" id="harga{{$barang->id_barang}}" name="harga[{{ $barang->id_barang }}]" placeholder="Harga Satuan" id="amount" oninput="calculate1();" class="form-control input-sm text-right amount harga harga'+i+'" value="{{ $barang->harga_brg }}">
                                             </td>
                                             <td>
-                                                <input type="text" id="total{{$barang->id_barang}}" name="total[{{ $barang->id_barang }}]" placeholder="Total Harga" class="form-control input-sm text-right amount total total1'+i+'" value="{{ $barang->total_brg }}" readonly>
+                                                <input type="text" id="total{{$barang->id_barang}}" name="total[{{ $barang->id_barang }}]" placeholder="Total Harga" class="form-control input-sm text-right amount total total1'+i+'" value="{{ $barang->total_brg }}" >
                                             </td>
                                             <th class="removes">Hapus</th>
                                         </tr>
@@ -171,7 +177,7 @@
                                                 <tr>
                                                     <td colspan="3"></td>
                                                     <td>
-                                                        <input type="text" id="subtotal" name="subtotal" class="form-control subtotal1" placeholder="Total Semua" value="{{ $barang->hargatotal_brg }}" disabled="disabled">
+                                                        <input type="text" id="subtotal" name="subtotal" class="form-control subtotal1" placeholder="Total Semua" value="{{ $barang->hargatotal_brg }}" readonly>
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -204,29 +210,17 @@
                                                 @elseif(Auth::user() && Auth::user()->akses == 'Kasubag QA')
                                                     <option value="">Pilih Pemroses</option>
                                                         @foreach($pegawaiaja as $key)
-                                                            <option value="{{$key->namapegawai}}" disabled="disabled" {{$prosespengadaan->id_pegawai == $key->namapegawai ? 'selected' : ''}}> {{$key->namapegawai}}</option>
+                                                            <option value="{{$key->namapegawai}}" readonly {{$prosespengadaan->id_pegawai == $key->namapegawai ? 'selected' : ''}}> {{$key->namapegawai}}</option>
                                                         @endforeach
                                                 @elseif(Auth::user() && Auth::user()->akses == 'Admin')
                                                     <option value="">Pilih Pemroses</option>
                                                         @foreach($pegawaiaja as $key)
-                                                            <option value="{{$key->namapegawai}}" disabled="disabled" {{$prosespengadaan->id_pegawai == $key->namapegawai ? 'selected' : ''}}> {{$key->namapegawai}}</option>
+                                                            <option value="{{$key->namapegawai}}" readonly {{$prosespengadaan->id_pegawai == $key->namapegawai ? 'selected' : ''}}> {{$key->namapegawai}}</option>
                                                         @endforeach
                                                 @endif
                                             </select>
                                         </div>
                                     </div>
-                                @if($prosespengadaan->keterangan != "")
-                                    <label class="col-sm-2 control-label">Keterangan</label>
-                                    <div class="col-sm-3">
-                                        <div class="input-group text">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-apple"></i>
-                                            </div>
-                                            <input type="text" name="row" value="{{$prosespengadaan->keterangan or ''}}" class="form-control" placeholder="Keterangan" readonly>
-                                        </div>
-                                    </div>
-                                @endif
-
                                     @if(Auth::user() && Auth::user()->akses == 'Kasubag QA')
                                         @if($prosespengadaan->status == "Pending")
                                         <label class="col-sm-2 control-label">Status Ppbj</label>
@@ -237,7 +231,8 @@
      var zone = document.getElementById("selectBox");
 
     if (zone.value == "Accepted"){
-            
+            var demo = document.getElementById("demos").classList.remove("ini");
+              return false;
     }else if(zone.value == "NonAccepted"){
             var demo = document.getElementById("demo").classList.remove("ini");
 ;
@@ -288,7 +283,7 @@
 }
   </style>
   <input id="demo" class="ini" type="text" name="keteranganpengadaan" placeholder="Keterangans">
-                                            <select id="selectBox" onchange="changeFunc();" name="status" class="form-control select2">
+                                            <select id="selectBox" onchange="changeFunc();" name="status" class="form-control select">
                                                 <option value="">Status Ppbj</option>
                                                 <option id="diterima" value="Accepted">Diterima</option>
                                                 <option id="ditolak" value="NonAccepted">Ditolak</option>
@@ -298,7 +293,7 @@
                                         <label class="col-sm-2 control-label">Status Ppbj</label>
                                         <div class="col-sm-3">
                                             <select name="status" class="form-control select2">
-                                                <option value="{{$prosespengadaan->status}}" readonly  {{$prosespengadaan->status == 'NonAccepted'}} ? : 'selected' ''>{{$prosespengadaan->status}}</option>
+                                                <option value="{{$prosespengadaan->status}}"  readonly>{{$prosespengadaan->status}}</option>
                                             </select>
                                         </div>
                                         @endif
@@ -418,7 +413,8 @@
                                         <input type="text" name="vendor" value="{{$prosespengadaan->vendor}}" class="form-control" placeholder="Nama PT" >
                                     </div>
                                 </div>
-                                <?php 
+                                @if($prosespengadaan->selesaikon != "")
+                                        <?php 
                                             $awal1  = strtotime($prosespengadaan->mulaippbj1);
                                             $akhir1 = strtotime($prosespengadaan->selesaikon); // Waktu sekarang
                                             $diffe1  = $akhir1 - $awal1;
@@ -431,37 +427,29 @@
                                             $akhir3 = strtotime($prosespengadaan->selesaikon3); // Waktu sekarang
                                             $diffe3  = $akhir3 - $awal3;
                                             $a = ' ';
-                                            $_1 = floor($diffe1 / (60 * 60  * 24) + 1);
-                                            $_2 = floor($diffe2 / (60 * 60  * 24) + 1);
-                                            $_3 = floor($diffe3 / (60 * 60  * 24) + 1);
                                             $totalhari1 = 'Waktu pengerjaan dengan vendor '.$prosespengadaan->vendor.$a. floor($diffe1 / (60 * 60  * 24) + 1) . ' hari';
                                             $totalhari2 = 'Waktu pengerjaan dengan vendor '.$prosespengadaan->vendor2.$a. floor($diffe2 / (60 * 60  * 24) + 1) . ' hari';
                                             $totalhari3 = 'Waktu pengerjaan dengan vendor '.$prosespengadaan->vendor3.$a. floor($diffe3 / (60 * 60  * 24) + 1) . ' hari';
                                         ?>
-                                @if($prosespengadaan->selesaikon != "")
                                             <span>{{$totalhari1}}</span>
                                 @endif
-                                    <input type="hidden" name="selesaivendor1" value="">
-                                    <input type="hidden" name="selesaivendorr1" value="{{$_1}}">
-
-                                    <input type="hidden" name="selesaivendor2" value="">
-                                    <input type="hidden" name="selesaivendorr2" value="{{$_2}}">
-
-                                    <input type="hidden" name="selesaivendor3" value="">
-                                    <input type="hidden" name="selesaivendorr3" value="{{$_3}}">
-
                             </div>
                             @if($prosespengadaan->selesaikon == "")
                             <div class="box-footer">
                                 <button type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Simpan1</button>
                             </div>
                             @endif
+
+                        @if($prosespengadaan->selesaikon2 == "")
+                            <div class="box-footer">
+                                <a type="submit" name="simpan" class="btn btn-primary pull-right"><i class="fa fa-save"></i>&nbsp;Simpangan</a>
+                            </div>
+                        @endif
+
                             @if($prosespengadaan->selesaikon != "")
                             @if(Auth::user() && Auth::user()->akses == 'Admin')
                             <div class="box-footer">
-                                @if($prosespengadaan->kodebarang2 == "")
-                                <a id="muncul" class="btn btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;Tambah</a>
-                                @else
+                                @if($prosespengadaan->kodebarang2 != "")
                                 <a id="muncul" class="btn btn-primary pull-right"><i class="fa fa-arrow-circle-down"></i>&nbsp;Lihat2</a>
                                 @endif
                             </div>
@@ -505,16 +493,16 @@
                                                     @foreach($barangnya2 as $barang2)
                                                 <tr>
                                                     <td>
-                                                        <input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" value="{{ $barang2->nama_barang }}" disabled="disabled">
+                                                        <input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" value="{{ $barang2->nama_barang }}" readonly>
                                                     </td>
                                                     <td>
-                                                        <input type="number" min="1" id="qty{{$barang->id_barang}}" name="qtykontrak[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'" oninput="calculate();" value="{{ $barang2->jumlah_brg }}" disabled="disabled">
+                                                        <input type="number" min="1" id="qty{{$barang->id_barang}}" name="qtykontrak[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'" oninput="calculate();" value="{{ $barang2->jumlah_brg }}" readonly>
                                                     </td>
                                                     <td>
-                                                        <input type="number" min="1" id="harga{{$barang->id_barang}}" name="hargakontrak[]]" placeholder="Harga Satuan" id="amount" oninput="calculate();" class="form-control input-sm text-right amount harga harga'+i+'" value="{{ $barang2->harga_brg }}" disabled="disabled">
+                                                        <input type="number" min="1" id="harga{{$barang->id_barang}}" name="hargakontrak[]]" placeholder="Harga Satuan" id="amount" oninput="calculate();" class="form-control input-sm text-right amount harga harga'+i+'" value="{{ $barang2->harga_brg }}" readonly>
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="total{{$barang->id_barang}}" name="totalkontrak[]" placeholder="Total Harga" class="form-control input-sm text-right amount total total'+i+'" value="{{ $barang2->total_brg }}" disabled="disabled">
+                                                        <input type="text" id="total{{$barang->id_barang}}" name="totalkontrak[]" placeholder="Total Harga" class="form-control input-sm text-right amount total total'+i+'" value="{{ $barang2->total_brg }}" readonly>
                                                     </td>
                                                     <th class="remove">Hapus</th>
                                                 </tr>
@@ -526,9 +514,9 @@
                                                         <td colspan="3"></td>
                                                         <td>
                                                             @if($prosespengadaan->kodebarang2 != "")
-                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="{{$barangg2->hargatotal_brg}}" readonly>
+                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="{{$barangg2->hargatotal_brg}}"  readonly>
                                                             @else
-                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value="" readonly>
+                                                            <input type="text" name="subtotalkontrak" class="form-control subtotalkontrak" placeholder="Total Semua" value=""  readonly>
                                                             @endif
                                                         </td>
                                                     </tfoot>
@@ -708,16 +696,16 @@
                                                     @foreach($barangnya3 as $barang2)
                                                 <tr>
                                                     <td>
-                                                        <input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" value="{{ $barang2->nama_barang }}" disabled="disabled">
+                                                        <input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" value="{{ $barang2->nama_barang }}" readonly>
                                                     </td>
                                                     <td>
                                                         <input type="number" min="1" id="qty{{$barang->id_barang}}" name="qtykontrak[]" placeholder="Jumlah Barang/Jasa" class="form-control qty qty'+i+'" oninput="calculate();" value="{{ $barang2->jumlah_brg }}">
                                                     </td>
                                                     <td>
-                                                        <input type="number" min="1" id="harga{{$barang->id_barang}}" name="hargakontrak[]]" placeholder="Harga Satuan" id="amount" oninput="calculate();" class="form-control input-sm text-right amount harga harga'+i+'" value="{{ $barang2->harga_brg }}" disabled="disabled">
+                                                        <input type="number" min="1" id="harga{{$barang->id_barang}}" name="hargakontrak[]]" placeholder="Harga Satuan" id="amount" oninput="calculate();" class="form-control input-sm text-right amount harga harga'+i+'" value="{{ $barang2->harga_brg }}" readonly>
                                                     </td>
                                                     <td>
-                                                        <input type="text" id="total{{$barang->id_barang}}" name="totalkontrak[]" placeholder="Total Harga" class="form-control input-sm text-right amount total total'+i+'" value="{{ $barang2->total_brg }}" disabled="disabled">
+                                                        <input type="text" id="total{{$barang->id_barang}}" name="totalkontrak[]" placeholder="Total Harga" class="form-control input-sm text-right amount total total'+i+'" value="{{ $barang2->total_brg }}" readonly>
                                                     </td>
                                                     <th class="remove">Hapus</th>
                                                 </tr>
@@ -729,9 +717,9 @@
                                                         <td colspan="3"></td>
                                                         <td>
                                                             @if($prosespengadaan->kodebarang3 != "")
-                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value="{{$barangg3->hargatotal_brg}}" readonly>
+                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value="{{$barangg3->hargatotal_brg}}"  readonly>
                                                             @else
-                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value="" readonly>
+                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak3" placeholder="Total Semua" value=""  readonly>
                                                             @endif
                                                         </td>
                                                     </tfoot>
@@ -882,7 +870,7 @@
                                         var rowkontrak = $('input[name="rowkontrak"]').val();
                                         var tagkontrak = '';
                                         for (i = 1; i <= rowkontrak; i++) {
-                                            tagkontrak += '<tr><td><input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak qtykontrak' + i + '" required></td><td><input type="number" name="hargakontrak[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga' + i + '" required></td><td><input type="text" name="totalkontrak[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total' + i + '" readonly></td></tr>';
+                                            tagkontrak += '<tr><td><input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak qtykontrak' + i + '" required></td><td><input type="number" name="hargakontrak[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga' + i + '" required></td><td><input type="text" name="totalkontrak[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total' + i + '"  readonly></td></tr>';
                                         }
                                         $('.tbody').html(tagkontrak);
                                         subtotalkontrak();
@@ -920,7 +908,7 @@
                                         var rowkontrak3 = $('input[name="rowkontrak3"]').val();
                                         var tagkontrak3 = '';
                                         for (i = 1; i <= rowkontrak3; i++) {
-                                            tagkontrak3 += '<tr><td><input type="text" name="namakontrak3[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak3[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak3' + i + '" required></td><td><input type="number" name="hargakontrak3[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga3' + i + '" required></td><td><input type="text" name="totalkontrak3[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total3' + i + '" readonly></td></tr>';
+                                            tagkontrak3 += '<tr><td><input type="text" name="namakontrak3[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak3[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak3' + i + '" required></td><td><input type="number" name="hargakontrak3[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga3' + i + '" required></td><td><input type="text" name="totalkontrak3[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total3' + i + '"  readonly></td></tr>';
                                         }
                                         $('.tbody3').html(tagkontrak3);
                                         subtotalkontrak3();

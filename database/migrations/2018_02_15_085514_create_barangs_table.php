@@ -17,7 +17,7 @@ class CreateBarangsTable extends Migration
         Schema::create('barangs', function (Blueprint $table) {
             $table->increments('id_barang');
             $table->integer('id')->unsigned()->nullable(); //id ppbj
-            $table->foreign('id')->references('id')->on('pbbjs');
+            $table->foreign('id')->references('id')->on('ppbjs');
             $table->string('kodebarang')->nullable();
             $table->integer('banyak_brg');
             $table->text('nama_barang');
@@ -31,7 +31,7 @@ class CreateBarangsTable extends Migration
         Schema::create('barangrealisasi', function (Blueprint $table) {
             $table->increments('id_barang');
             $table->integer('id')->unsigned()->nullable(); //id ppbj
-            $table->foreign('id')->references('id')->on('pbbjs');
+            $table->foreign('id')->references('id')->on('ppbjs');
             $table->string('kodebarang')->nullable();
             $table->integer('banyak_brg')->nullable();
             $table->text('nama_barang')->nullable();
@@ -44,7 +44,7 @@ class CreateBarangsTable extends Migration
         Schema::create('barangrealisasi2', function (Blueprint $table) {
             $table->increments('id_barang');
             $table->integer('id')->unsigned()->nullable(); //id ppbj
-            $table->foreign('id')->references('id')->on('pbbjs');
+            $table->foreign('id')->references('id')->on('ppbjs');
             $table->string('kodebarang')->nullable();
             $table->integer('banyak_brg')->nullable();
             $table->text('nama_barang')->nullable();

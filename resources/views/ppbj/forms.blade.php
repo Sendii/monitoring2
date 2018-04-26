@@ -45,6 +45,7 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
+                                            <input type="hidden" name="keterangan" value="">
                                             <input type="text" name="noregisumum" id="myInput" type="text" name="myCountry" class="form-control" placeholder="No. Regis Umum" required>
                                             @extends('autocomplete')
                                         </div>

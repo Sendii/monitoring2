@@ -222,8 +222,20 @@
                             <span>PPBJ</span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
-                        <ul class="treeview-menu">
-                            <li><a href=" {{url('/allPpbj')}} "><i class="fa fa-desktop"></i> Lihat Data</a></li>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="treeview">
+                                <a href=" {{url('/allPpbj')}} "><i class="fa fa-desktop"></i> Lihat Data
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu" style="display: none;">
+                                    <li><a href="{{url('allPpbj')}}"><i class="fa fa-book"></i>Semua Ppbj</a></li>
+                                    <li><a href="{{url('ppbjterselesaikan')}}"><i class="fa fa-book"></i> Ppbj Terselesaikan</a></li>
+                                    <li><a href=" {{url('ppbjbelumselesai')}} "><i class="fa fa-download"></i> Ppbj Belum Terselesaikan</a></li>
+                                </ul>
+                            </li>
+
                             <li><a href=" {{url('/inputPpbj')}} "><i class="fa fa-plus-square"></i> Tambah Data </a></li>
                         </ul>
                     </li>
@@ -237,7 +249,7 @@
                         </a>
                         <ul class="treeview-menu" style="display: none;">
                             <li class="treeview">
-                                <a href="{{url('allUnit')}}"><i class="fa fa-tv"></i>Lihat Unit Kerja
+                                <a href="#"><i class="fa fa-tv"></i>Lihat Unit Kerja
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>

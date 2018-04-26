@@ -15,9 +15,12 @@ class CreateProsespengadaansTable extends Migration
     {
         Schema::create('prosespengadaans', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('selesai1')->nullable();
+            $table->text('selesai2')->nullable();
+            $table->text('selesai3')->nullable();
             $table->text('id_pegawai')->nullable();
             $table->integer('id_ppbj')->unsigned()->nullable(); //id ppbj
-            $table->foreign('id_ppbj')->references('id')->on('pbbjs')->onDelete('cascade');
+            $table->foreign('id_ppbj')->references('id')->on('ppbjs')->onDelete('cascade');
             $table->text('mulaippbj1')->nullable();
             $table->text('tgl_spph')->nullable(); //Tanggal Spph
             $table->text('no_spph')->nullable();

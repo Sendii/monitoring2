@@ -194,6 +194,32 @@
                                         <strong>VISI DIVISI UMUM</strong>
                                     </h2>
                                     <p class="lead mbr-text mbr-fonts-style display-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                    @if(Auth::user() &&Auth::user()->akses == 'Admin' )
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{url('admin')}}">ADMIN</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/logout')}}">KELUAR</a>
+                                    </div>
+                                    @elseif(Auth::user() &&Auth::user()->akses == 'Kadiv' )
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{url('monitoring')}}">KADIV</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/logout')}}">KELUAR</a>
+                                    </div>
+                                    @elseif(Auth::user() &&Auth::user()->akses == 'Kasubag' )
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{url('receivePpbj')}}">KASUBAG</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/logout')}}">KELUAR</a>
+                                    </div>
+                                    @elseif(Auth::user()&& Auth::user()->akses == 'User')
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{url('userspeople')}}">MENUNGGU</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/logout')}}">KELUAR</a>
+                                    </div>
+                                    @endif @if(Auth::guest())
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{ url('/login')}}">MASUK</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/login')}}">DAFTAR</a>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -210,6 +236,32 @@
                                         <strong>MISI DIVISI UMUM</strong>
                                     </h2>
                                     <p class="lead mbr-text mbr-fonts-style display-5">Memberikan layanan prima dalam bidang pengadaan barang jasa/jasa, pengelolaan asset, transportasi, utilisasi, pemantauan dan perawatan sarana kerja serta layanan dokumen/barang untuk menunjang kelancaran dan optimasi kegiatan operasional perusahaan sesuai kebutuhan pengguna dengan mempertimbangkan biaya, mutu, dan waktu penyerahan, yang memberikan manfaat sebesar-besarnya bagi perusahaan.</p>
+                                    @if(Auth::user() &&Auth::user()->akses == 'Admin' )
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{url('admin')}}">ADMIN</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/logout')}}">KELUAR</a>
+                                    </div>
+                                    @elseif(Auth::user() &&Auth::user()->akses == 'Kadiv' )
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{url('monitoring')}}">KADIV</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/logout')}}">KELUAR</a>
+                                    </div>
+                                    @elseif(Auth::user() &&Auth::user()->akses == 'Kasubag' )
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{url('receivePpbj')}}">KASUBAG</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/logout')}}">KELUAR</a>
+                                    </div>
+                                    @elseif(Auth::user()&& Auth::user()->akses == 'User')
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{url('userspeople')}}">MENUNGGU</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/logout')}}">KELUAR</a>
+                                    </div>
+                                    @endif @if(Auth::guest())
+                                    <div class="mbr-section-btn" buttons="0">
+                                        <a class="btn  display-4 btn-primary" href="{{ url('/login')}}">MASUK</a> 
+                                        <a class="btn  display-4 btn-white-outline" href="{{ url('/login')}}">DAFTAR</a>
+                                    </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

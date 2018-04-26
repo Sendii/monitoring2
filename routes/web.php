@@ -21,7 +21,7 @@ Route::post('/', 'HomeController@contactme')->name('contactme');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('profile/', 'HomeController@profile')->middleware('auth');
 Auth::routes();
-Route::get('home', 'HomeController@index')->name('home')->middleware('auth');;
+Route::get('home', 'HomeController@index')->name('home')->middleware('auth');
 Route::get('ppbjcabang', 'BppjController@viewppbjcabang')->name('viewppbjcabang');
 Route::get('ppbjpusat', 'BppjController@viewppbjpusat')->name('viewppbjpusat');
 Route::get('/info','HomeController@info');
@@ -33,14 +33,19 @@ Route::middleware(['publicpeople'])->group(function () {
 	Route::get('userspeople', 'HomeController@userpeople')->name('userpeople');
 });
 
-Route::middleware(['admin', 'kadiv', 'auth'])->group(function () {
-	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
-	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
-	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
-	Route::get('/viewAlldata/{id}', 'MonitoringController@viewAlldata')->name('viewAlldata');
-	Route::get('/alljenis', 'PengadaanController@alljenis')->name('alljenis');
-	Route::get('/allsaran', 'HomeController@allsaran')->name('allsaran');
-	Route::get('/viewsaran/{id}', 'HomeController@viewsaran');
+Route::middleware(['admin']&&['kadiv'])->group(function () {
+	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai')->middleware('auth');
+	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit')->middleware('auth');
+	Route::get('/alluser', 'HomeController@alluser')->name('alluser')->middleware('auth');
+	Route::get('/viewAlldata/{id}', 'MonitoringController@viewAlldata')->name('viewAlldata')->middleware('auth');
+	Route::get('/alljenis', 'PengadaanController@alljenis')->name('alljenis')->middleware('auth');
+	Route::get('/allsaran', 'HomeController@allsaran')->name('allsaran')->middleware('auth');
+	Route::get('/viewsaran/{id}', 'HomeController@viewsaran')->middleware('auth');
+	Route::get('/{ppbjterselesaikan}', 'BppjController@ppbjselesai', 
+		function($ppbjterselesaikan) {
+				return redirect::to('ppbjterselesaikan');
+			})->where(['ppbjterselesaikan' => 'ppbjbelumselesai|ppbjterselesaikan|ppbjterselesaikan2'
+		]);
 });
 
 Route::middleware(['admin', 'auth'])->group(function () {

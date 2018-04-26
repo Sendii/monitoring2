@@ -16,7 +16,7 @@ class CreateProsesrealisasisTable extends Migration
         Schema::create('prosesrealisasis', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_ppbj')->unsigned()->nullable(); //id ppbj
-            $table->foreign('id_ppbj')->references('id')->on('pbbjs')->onDelete('cascade');
+            $table->foreign('id_ppbj')->references('id')->on('ppbjs')->onDelete('cascade');
             $table->text('tgl_spph')->nullable(); //Tanggal Spph
             $table->text('no_spph')->nullable();
             $table->text('tgl_etp')->nullable(); //Tanggal etp

@@ -21,7 +21,11 @@ class SuperAdmin
             return $next($request);
         }elseif(Auth::user() &&  Auth::user()->akses == 'Admin') {
             return redirect('admin');
-        }elseif(Auth::user() &&  Auth::user()->akses == 'Kasubag Pusat' || 'Kasubag QA' || 'Kasubag Cabang') {
+        }elseif(Auth::user() &&  Auth::user()->akses == 'Kasubag Pusat') {
+            return redirect('receivePpbj');
+        }elseif (Auth::user() &&  Auth::user()->akses == 'Kasubag QA') {
+            return redirect('receivePpbj');
+        }elseif (Auth::user() &&  Auth::user()->akses == 'Kasubag Cabang') {
             return redirect('receivePpbj');
         }
 
