@@ -87,12 +87,13 @@ Route::middleware(['admin', 'auth'])->group(function () {
 	Route::get('pegawai/ppbj/{random}/{namapegawai}', 'PegawaiController@ppbjPegawai')->name('ppbjPegawai');
 	Route::get('pegawai/ppbj/{no_ppbj}', 'PegawaiController@ppbjPegawaigan')->name('ppbjPegawais');
 });
-Route::middleware(['kasubag', 'auth'])->group(function () {
+Route::middleware(['kasubag']&&['admin'], 'auth')->group(function () {
 	Route::get('/receivePpbj', 'PenugasanController@receivePpbj')->name('receivePpbj');
 	Route::get('/receivePpbj/approve/', 'PenugasanController@ppbjApprove')->name('ppbjApprove');
 	Route::get('/receivePpbj/noapprove/', 'PenugasanController@ppbjnoApprove')->name('ppbjnoApprove');
 	Route::get('addAsignment/{id}', 'PenugasanController@addAsignment')->name('addAsignment');
 	Route::post('saveAssignment', 'PenugasanController@saveAssignment')->name('saveAsignment');
 	Route::get('editassignmentPpbj/{id}', 'PenugasanController@editassignmentPpbj');
+	Route::get('editassignmentsPpbj/{id}', 'PenugasanController@editassignmentPpbj');
 	Route::post('updateassignmentPpbj/{id}', 'PenugasanController@updateassignmentPpbj')->name('updateassignment');
 });

@@ -260,7 +260,21 @@ class BppjController extends Controller
 
   public function ppbjselesai() {
     $data['this_page'] = basename($_SERVER['REQUEST_URI']);
-    $data['prosespengadaan'] = prosespengadaan::with('getPpbj')->where('selesai1', '<=', 1)->get();
+
+    if($data['this_page'] == "ppbjterselesaikan") {
+      $data['prosespengadaan'] = prosespengadaan::with('getPpbj')
+                              ->orWhereNotNull('selesai1')
+                              ->orWhereNotNull('selesai2')
+                              ->orWhereNotNull('selesai3')
+                              ->get();
+    }else if($data['this_page'] == "ppbjbelumselesai")
+                            {
+      $data['prosespengadaan'] = prosespengadaan::with('getPpbj')
+                              ->where('selesai1')
+                              ->orWhere('selesai2')
+                              ->orWhere('selesai3')
+                              ->get();
+                            }
 
     return view('ppbj.ppbjselesai')->with($data);
   }
