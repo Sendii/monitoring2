@@ -31,8 +31,6 @@
                                 <h3 style="font-size: 25px" class="box-title">Data Ppbj Selesai</h3>
                                 @elseif($testUrl == "ppbjbelumselesai")
                                 <h3 style="font-size: 25px" class="box-title">Data Ppbj Belum Terselesaikan</h3>
-                                @else
-                                <h3 style="font-size: 25px" class="box-title">Data Ppbj</h3>
                                 @endif
                             </center>
                             <div class="container">
@@ -40,176 +38,145 @@
                             </div>
                         </div>
                         <!-- /.box-header -->
+                    @if($testUrl == "ppbjterselesaikan")
                         <div class="box-body">
                             <div class="table-responsive">
                                 <table id="example" class="table table-bordered table-hover" role="grid" aria-describedby="example1_info" data>
                                     <thead>
                                         <tr>
                                             <th class="center">No. </th>
-                                            <th class="center">Kode PJ</th>
-                                            <th class="center">Nomor RegisUmum</th>
-                                            <th class="center">Tanggal RegisUmum</th>
-                                            <th class="center">Nomor Bppj</th>
-                                            <th class="center">Tanggal Permintaan</th>
-                                            <th class="center">Tanggal Dibutuhkan</th>
-                                            <th class="center">Items Pengadaan</th>
-                                            <th class="center">Unit Kerja</th>
-                                            <th class="center">Nama Barang</th>
-                                            <th class="center">Harga Barang</th>
-                                            <th class="center">Jumlah Barang</th>
-                                            <th class="center">Harga Total</th>
-                                            <th class="center">Ubah</th>
-                                            <th class="center">Cek Proses</th>
-                                            <th class="center">Status</th>
-                                            <th class="center">Tambah Ppbj</th>
+                                            <th class="center">Pemroses</th>
+                                            <th class="center">Unit</th>
+                                            <th class="center">Nomor Kontrak </th>
+                                            <th class="center">Nama Vendor </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($prosespengadaan as $key)
                                         <?php
                                             $unitkerja = \App\unitkerja::where('aa', '=', $key->getPpbj->id_unit)->value('aa');
-                                            $pegawai = \App\pegawai::where('namapegawai', '=', $key->getPpbj->id_pegawai)->value('namapegawai');
-                                            $cekpenyelesaian = \App\prosespengadaan::where('id', '=', $key->getPpbj->id)->value('selesaikon');
-                                            $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->getPpbj->id_pengadaan)->value('namapengadaan');
+                                            $pegawai = \App\pegawai::where('namapegawai', '=', $key->id_pegawai)->value('namapegawai');
+                                            $cekpenyelesaian = \App\prosespengadaan::where('id', '=', $key->id)->value('selesaikon');
+                                            $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->id_pengadaan)->value('namapengadaan');
                                         ?>
                                         <tr>
-                                            <td class="center">{{$key->getPpbj->id}}</td>
-                                            <td class="center">{{$key->getPpbj->kodePj}}</td>
-                                            <td class="center">{{$key->getPpbj->no_regis_umum}}</td>
-                                            <td class="center">
-                                                @if($key->getPpbj->tgl_regis_umum == "")
-                                                <i>Tanggal belum diInput</i> @else
-                                                <div class="row">
-                                                    <div class="center">
-                                                        &nbsp; &nbsp; &nbsp; {{$key->getPpbj->tgl_regis_umum}}
-                                                    </div>
-                                                </div>
-                                                @endif
-                                            </td>
-                                            <td class="center">{{$key->getPpbj->no_ppbj}}</td>
-                                            <td class="center">{{$key->getPpbj->tgl_permintaan_ppbj}}</td>
-                                            <td class="center">{{$key->getPpbj->tgl_dibutuhkan_ppbj}}</td>
-                                            <td class="center">{{ $cekpengadaan }}</td>
-                                            <td class="center">{{$unitkerja}}</td>
-
-                                            <td class="center">
-                                                <ul>
-                                                    @foreach($key->getPpbj->Barang as $value)
-                                                    <li>
-                                                        {{$value->nama_barang}}
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->getPpbj->Barang2 as $value)
-                                                    <li>
-                                                        {{$value->nama_barang}}
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->getPpbj->Barang3 as $value)
-                                                    <li>
-                                                        {{$value->nama_barang}}
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                            </td>
-                                            <td class="center">
-                                                <ul>
-                                                    @foreach($key->getPpbj->Barang as $value)
-                                                    <li>
-                                                        {{$value->harga_brg}}
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->getPpbj->Barang2 as $value)
-                                                    <li>
-                                                        {{$value->harga_brg}}
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->getPpbj->Barang3 as $value)
-                                                    <li>
-                                                        {{$value->harga_brg}}
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                            </td>
-                                            <td class="center">
-                                                <ul>
-                                                    @foreach($key->getPpbj->Barang as $value)
-                                                    <li>
-                                                        {{$value->jumlah_brg}}
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->getPpbj->Barang2 as $value)
-                                                    <li>
-                                                        {{$value->harga_brg}}
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->getPpbj->Barang3 as $value)
-                                                    <li>
-                                                        {{$value->harga_brg}}
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                            </td>
-                                            <td class="center">
-                                                <ul>
-                                                    <?php $total = 0; ?>
-                                                    @foreach($key->getPpbj->Barang as $value)
-                                                    <li>
-                                                        {{$value->total_brg }}
-                                                        <?php $total += $value->total_brg ?>
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->getPpbj->Barang2 as $value)
-                                                    <li>
-                                                        {{$value->total_brg }}
-                                                        <?php $total += $value->total_brg ?>
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->getPpbj->Barang3 as $value)
-                                                    <li>
-                                                        {{$value->total_brg }}
-                                                        <?php $total += $value->total_brg ?>
-                                                    </li>
-                                                    @endforeach
-                                                </ul>
-                                                <br> Total: <i>{{ $total }}</i>
-                                            </td>
-                                            <td class="center"><a href="{{route('editPpbj', [$key->getPpbj->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah</a></td>
-                                            <td class="center">
-                                                <a href="{{url('editassignmentsPpbj', [$key->getPpbj->id])}}">
-                                                    <center><i class="fa fa-edit" aria-hidden="true"> </i>Lihat</center>
-                                                </a>
-                                            </td>
-                                            <!-- <td class="center"><button class="btn btn-danger delete-btn" data-noppbj='{{$key->no_ppbj}}'  data-id='{{$key->id}}' href="{{route('delete_ppbj', [$key->id])}}">Delete</td> -->
-                                                <td class="center">
-                                                    @if($pegawai != "" && $cekpenyelesaian != "")
-                                                        <center><span class="label label-success">Proses Selesai&nbsp;<i class="fa fa-check"></i></span></center>
-                                                    @elseif($pegawai == "")
-                                                        <center><span class="label label-danger">Belum ada Pemroses&nbsp;<i class="fa fa-close"></i></span></center>
-                                                    @elseif ($pegawai != "")
-                                                        <center><span class="label label-info">Dalam Proses&nbsp;<i class="fa fa-refresh"></i></span></center>
+                                        	<td class="center">{{$key->id}}</td>
+                                        	<td class="center">
+                                        		<a href="{{route('viewppbjPegawai', [$key->id_pegawai])}}">{{$pegawai}}</a>
+                                        	</td>
+                                        	<td class="center">
+                                        		<a href="{{route('viewPpbj', [$key->getPpbj->id_unit])}}">{{$unitkerja}}</a>
+                                        	</td>
+                                        	<td class="center">
+                                                <!-- 1 -->
+                                        		<a href="{{url('ppbjterselesaikan', [$key->no_kon])}}">
+                                                    @if($key->no_kon != "")
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon}}</center>
                                                     @endif
-
-                                                    @if($key->getPpbj->status == 'Pending')
-                                                        <span class="label label-info">Belum di diVerifikasi</span>
-                                                    @elseif($key->getPpbj->status == 'Accepted')
-                                                        <span class="label label-success">Sudah di Verifikasi</span>
-                                                    @elseif($key->getPpbj->status == 'NonAccepted')
-                                                        <span class="label label-warning">Tidak di terverifikasi</span>
-                                                    @else
-                                                    <span class="label label-danger">Dikembalikan&nbsp;<i class="fa fa-close"></i></span>
-                                                    @endif
-                                                </td>
-                                                <td class="center">
-                                                <a href="{{url('inputPpbjs', [$key->getPpbj->id])}}">
-                                                    <center><i class="fa fa-plus-square" aria-hidden="true"></i>Tambah</center>
                                                 </a>
-                                            </td>
-                                            </tr>
+                                                <!-- 2 -->
+                                                <a href="{{url('ppbjterselesaikans', [$key->no_kon2])}}">
+                                                    @if($key->no_kon2 != "")
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon2}}</center>
+                                                    @endif
+                                                </a>
+                                                <!-- 3 -->
+                                                <a href="{{url('ppbjterselesaikanss', [$key->no_kon3])}}">
+                                                    @if($key->no_kon3 != "")
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon3}}</center>
+                                                    @endif
+                                                </a>
+                                        	</td>
+                                        	<td class="center">
+                                        		<a href="{{url('ppbjterselesaikanse', [$key->vendor])}}">
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor}}</center>
+                                                </a>
+                                                <a href="{{url('ppbjterselesaikansee', [$key->vendor2])}}">
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor2}}</center>
+                                                </a>
+                                                <a href="{{url('ppbjterselesaikanseee', [$key->vendor3])}}">
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor3}}</center>
+                                                </a>
+                                        	</td>
+                                         </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                        @elseif($testUrl == "ppbjbelumselesai")
+                        	<div class="box-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table table-bordered table-hover" role="grid" aria-describedby="example1_info" data>
+                                    <thead>
+                                        <tr>
+                                            <th class="center">No. </th>
+                                            <th class="center">Pemroses</th>
+                                            <th class="center">Unit</th>
+                                            <th class="center">Nomor Kontrak </th>
+                                            <th class="center">Nama Vendor </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($prosespengadaan as $key)
+                                        <?php
+                                            $unitkerja = \App\unitkerja::where('aa', '=', $key->getPpbj->id_unit)->value('aa');
+                                            $pegawai = \App\pegawai::where('namapegawai', '=', $key->id_pegawai)->value('namapegawai');
+                                            $cekpenyelesaian = \App\prosespengadaan::where('id', '=', $key->id)->value('selesaikon');
+                                            $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->id_pengadaan)->value('namapengadaan');
+                                        ?>
+                                        <tr>
+                                            <td class="center">{{$key->id}}</td>
+                                            <td class="center">
+                                                <a href="{{route('viewppbjPegawai', [$key->id_pegawai])}}">{{$pegawai}}</a>
+                                            </td>
+                                            <td class="center">
+                                                <a href="{{route('viewPpbj', [$key->getPpbj->id_unit])}}">{{$unitkerja}}</a>
+                                            </td>
+                                            <td class="center">
+                                                <!-- 1 -->
+                                                <a href="{{url('ppbjbelumselesaiie', [$key->no_kon])}}">
+                                                    @if($key->no_kon != "")
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon}}</center>
+                                                    @endif
+                                                </a>
+                                                <!-- 2 -->
+                                                <a href="{{url('ppbjbelumselesaii', [$key->no_kon2])}}">
+                                                    @if($key->no_kon2 != "")
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon2}}</center>
+                                                    @endif
+                                                </a>
+                                                <!-- 3 -->
+                                                <a href="{{url('ppbjbelumselesaiii', [$key->no_kon3])}}">
+                                                    @if($key->no_kon3 != "")
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon3}}</center>
+                                                    @endif
+                                                </a>
+                                            </td>
+                                            <td class="center">
+                                                <a href="{{url('ppbjbelumselesaie', [$key->vendor])}}">
+                                                    @if($key->vendor != "")
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor}}</center>
+                                                    @endif
+                                                </a>
+                                                <a href="{{url('ppbjbelumselesaiee', [$key->vendor2])}}">
+                                                    @if($key->vendor2 != "")
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor2}}</center>
+                                                    @endif
+                                                </a>
+                                                <a href="{{url('ppbjbelumselesaieee', [$key->vendor3])}}">
+                                                    @if($key->vendor3 != "")
+                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor3}}</center>
+                                                    @endif
+                                                </a>
+                                            </td>
+                                         </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        @endif
                             <!-- /.box-body -->
                         </div>
                         <!-- /.box -->

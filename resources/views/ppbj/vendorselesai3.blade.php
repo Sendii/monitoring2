@@ -37,7 +37,7 @@
                                     <thead>
                                         <tr>
                                             <th class="center">No. </th>
-                                            <th class="center">Kode PJ</th>
+                                            <th class="center">Nama Vendor</th>
                                             <th class="center">Nomor RegisUmum</th>
                                             <th class="center">Tanggal RegisUmum</th>
                                             <th class="center">Nomor Ppbj</th>
@@ -52,49 +52,38 @@
                                             <th class="center">Ubah</th>
                                             <th class="center">Cek Proses</th>
                                             <th class="center">Status</th>
-                                            <th class="center">Tambah Ppbj</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($ppbjall as $key)
+                                        @foreach($prosespengadaan as $key)
                                         <?php
-                                            $unitkerja = \App\unitkerja::where('aa', '=', $key->id_unit)->value('aa');
-                                            $pegawai = \App\pegawai::where('namapegawai', '=', $key->id_pegawai)->value('namapegawai');
-                                            $cekpenyelesaian = \App\prosespengadaan::where('id', '=', $key->id)->value('selesaikon');
-                                            $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->id_pengadaan)->value('namapengadaan');
+                                            $unitkerja = \App\unitkerja::where('aa', '=', $key->getPpbj->id_unit)->value('aa');
+                                            $pegawai = \App\pegawai::where('namapegawai', '=', $key->getPpbj->id_pegawai)->value('namapegawai');
+                                            $cekpenyelesaian = \App\prosespengadaan::where('id', '=', $key->getPpbj->id)->value('selesaikon');
+                                            $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->getPpbj->id_pengadaan)->value('namapengadaan');
                                         ?>
                                         <tr>
                                             <td class="center">{{$key->id}}</td>
-                                            <td class="center">{{$key->kodePj}}</td>
-                                            <td class="center">{{$key->no_regis_umum}}</td>
+                                            <td class="center">{{$key->vendor}}</td>
+                                            <td class="center">{{$key->getPpbj->no_regis_umum}}</td>
                                             <td class="center">
-                                                @if($key->tgl_regis_umum == "")
+                                                @if($key->getPpbj->tgl_regis_umum == "")
                                                 <i>Tanggal belum diInput</i> @else
                                                 <div class="row">
                                                     <div class="center">
-                                                        &nbsp; &nbsp; &nbsp; {{$key->tgl_regis_umum}}
+                                                         {{$key->getPpbj->tgl_regis_umum}}
                                                     </div>
                                                 </div>
                                                 @endif
                                             </td>
-                                            <td class="center">{{$key->no_ppbj}}</td>
-                                            <td class="center">{{$key->tgl_permintaan_ppbj}}</td>
-                                            <td class="center">{{$key->tgl_dibutuhkan_ppbj}}</td>
+                                            <td class="center">{{$key->getPpbj->no_ppbj}}</td>
+                                            <td class="center">{{$key->getPpbj->tgl_permintaan_ppbj}}</td>
+                                            <td class="center">{{$key->getPpbj->tgl_dibutuhkan_ppbj}}</td>
                                             <td class="center">{{ $cekpengadaan }}</td>
                                             <td class="center">{{$unitkerja}}</td>
 
                                             <td class="center">
                                                 <ul>
-                                                    @foreach($key->Barang as $value)
-                                                    <li>
-                                                        {{$value->nama_barang}}
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->Barang2 as $value)
-                                                    <li>
-                                                        {{$value->nama_barang}}
-                                                    </li>
-                                                    @endforeach
                                                     @foreach($key->Barang3 as $value)
                                                     <li>
                                                         {{$value->nama_barang}}
@@ -104,16 +93,6 @@
                                             </td>
                                             <td class="center">
                                                 <ul>
-                                                    @foreach($key->Barang as $value)
-                                                    <li>
-                                                        {{$value->harga_brg}}
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->Barang2 as $value)
-                                                    <li>
-                                                        {{$value->harga_brg}}
-                                                    </li>
-                                                    @endforeach
                                                     @foreach($key->Barang3 as $value)
                                                     <li>
                                                         {{$value->harga_brg}}
@@ -123,16 +102,6 @@
                                             </td>
                                             <td class="center">
                                                 <ul>
-                                                    @foreach($key->Barang as $value)
-                                                    <li>
-                                                        {{$value->jumlah_brg}}
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->Barang2 as $value)
-                                                    <li>
-                                                        {{$value->harga_brg}}
-                                                    </li>
-                                                    @endforeach
                                                     @foreach($key->Barang3 as $value)
                                                     <li>
                                                         {{$value->harga_brg}}
@@ -143,18 +112,6 @@
                                             <td class="center">
                                                 <ul>
                                                     <?php $total = 0; ?>
-                                                    @foreach($key->Barang as $value)
-                                                    <li>
-                                                        {{$value->total_brg }}
-                                                        <?php $total += $value->total_brg ?>
-                                                    </li>
-                                                    @endforeach
-                                                    @foreach($key->Barang2 as $value)
-                                                    <li>
-                                                        {{$value->total_brg }}
-                                                        <?php $total += $value->total_brg ?>
-                                                    </li>
-                                                    @endforeach
                                                     @foreach($key->Barang3 as $value)
                                                     <li>
                                                         {{$value->total_brg }}
@@ -190,11 +147,6 @@
                                                     <span class="label label-danger">Dikembalikan&nbsp;<i class="fa fa-close"></i></span>
                                                     @endif
                                                 </td>
-                                                <td class="center">
-                                                <a href="{{url('inputPpbjs', [$key->id])}}">
-                                                    <center><i class="fa fa-plus-square" aria-hidden="true"></i>Tambah</center>
-                                                </a>
-                                            </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

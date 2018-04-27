@@ -600,10 +600,10 @@ class PenugasanController extends Controller
         for ($i=0; $i < $r['row']; $i++)
         {
             $new1 = new barang;
-            $new1->id = $new->id;
+            $new1->id = $table->id;
             if($r->input('row') != "") {
                 $new1->banyak_brg = $r->input('row');
-                $new1->kodebarang = $new->kodebarang;
+                $new1->kodebarang = $table->kodebarang;
             }
             $new1->nama_barang= $r['nama'][$i];
             $new1->jumlah_brg= $r['qty'][$i]; 

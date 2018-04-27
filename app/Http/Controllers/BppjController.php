@@ -259,27 +259,85 @@ class BppjController extends Controller
   }
 
   public function ppbjselesai() {
-    $data['this_page'] = basename($_SERVER['REQUEST_URI']);
-
-    if($data['this_page'] == "ppbjterselesaikan") {
-      $data['prosespengadaan'] = prosespengadaan::with('getPpbj')
+    //DATA INI PERLU DI SELECT!!!!!
+    $_requestUrl = basename($_SERVER['REQUEST_URI']);
+    if($_requestUrl == "ppbjterselesaikan"){
+        $data['prosespengadaan'] = prosespengadaan::with('getPpbj')->select('no_kon')
+                              ->groupBy('no_kon')
                               ->orWhereNotNull('selesai1')
                               ->orWhereNotNull('selesai2')
                               ->orWhereNotNull('selesai3')
                               ->get();
-    }else if($data['this_page'] == "ppbjbelumselesai")
-                            {
-      $data['prosespengadaan'] = prosespengadaan::with('getPpbj')
+
+        $data['prosespengadaan'] = prosespengadaan::with('getPpbj')
+                              ->orWhereNotNull('selesai1')
+                              ->orWhereNotNull('selesai2')
+                              ->orWhereNotNull('selesai3')
+                              ->whereNotNull('no_kon')
+                              ->whereNotNull('no_kon2')
+                              ->whereNotNull('no_kon3')
+                              ->get();                     
+    }else if($_requestUrl == "ppbjbelumselesai"){
+        $data['prosespengadaan'] = prosespengadaan::with('getPpbj')
                               ->where('selesai1')
                               ->orWhere('selesai2')
                               ->orWhere('selesai3')
                               ->get();
                             }
-
     return view('ppbj.ppbjselesai')->with($data);
   }
 
   public function ppbjbelumselesai() {
 
+  }
+
+  public function kontrakselesai($no_kon) {
+    $data['kontrakselesai'] = prosespengadaan::with('getPpbj')->where('no_kon', $no_kon)->get();
+    return view('ppbj.kontrakselesai')->with($data);
+  }
+
+  public function kontrakselesai2($no_kon2) {
+    $data['kontrakselesai2'] = prosespengadaan::with('getPpbj')->where('no_kon2', $no_kon2)->get();
+    return view('ppbj.kontrakselesai2')->with($data);
+  }
+
+  public function kontrakselesai3($no_kon3) {
+    $data['kontrakselesai2'] = prosespengadaan::with('getPpbj')->where('no_kon3', $no_kon3)->get();
+    return view('ppbj.kontrakselesai3')->with($data);
+  }
+
+  public function kontrakbelumselesai($no_kon) {
+    $data['kontrakselesai'] = prosespengadaan::with('getPpbj')->where('no_kon', $no_kon)->get();
+    return view('ppbj.kontrakbelumselesai')->with($data);
+  }
+
+  public function kontrakbelumselesai2($no_kon2) {
+    $data['kontrakselesai2'] = prosespengadaan::with('getPpbj')->where('no_kon2', $no_kon2)->get();
+    return view('ppbj.kontrakbelumselesai2')->with($data);
+  }
+
+  public function kontrakbelumselesai3($no_kon3) {
+    $data['kontrakselesai3'] = prosespengadaan::with('getPpbj')->where('no_kon3', $no_kon3)->get();
+    return view('ppbj.kontrakbelumselesai3')->with($data);
+  }
+
+  public function vendor($vendor) {
+    $data['prosespengadaan'] = prosespengadaan::where('vendor', '=', $vendor)->get();
+    return view('ppbj.vendorselesai')->with($data);
+  }
+
+  public function vendor2($vendor2) {
+    $data['prosespengadaan'] = prosespengadaan::where('vendor2', '=', $vendor2)->get();
+    return view('ppbj.vendorselesai2')->with($data);
+  }
+
+  public function vendor3($vendor3) {
+    $data['prosespengadaan'] = prosespengadaan::where('vendor3', '=', $vendor3)->get();
+    return view('ppbj.vendorselesai3')->with($data);
+  }
+
+  public function pegawai($id_pegawai) {
+    $data['ppbjPegawai'] = prosespengadaan::where('id_pegawai', '=', $id_pegawai)->get();
+    return view('ppbj.pegawaiselesai')->with($data);
   }
 }

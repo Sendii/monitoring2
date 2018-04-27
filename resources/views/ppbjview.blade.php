@@ -40,7 +40,7 @@
                                             <th class="center">Kode PJ</th>
                                             <th class="center">Nomor RegisUmum</th>
                                             <th class="center">Tanggal RegisUmum</th>
-                                            <th class="center">Nomor Bppj</th>
+                                            <th class="center">Nomor Ppbj</th>
                                             <th class="center">Tanggal Permintaan</th>
                                             <th class="center">Tanggal Dibutuhkan</th>
                                             <th class="center">Items Pengadaan</th>
@@ -60,7 +60,7 @@
                                             $unitkerja = \App\unitkerja::where('aa', '=', $key->id_unit)->value('aa');
                                             $pegawai = \App\pegawai::where('id_pegawai', '=', $key->id_pegawai)->value('namapegawai');
                                             $cekpenyelesaian = \App\prosespengadaan::where('id', '=', $key->id)->value('selesaikon');
-                                            $cekpengadaan = \App\pengadaan::where('id', $key->id_pengadaan)->value('namapengadaan');
+                                            $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->id_pengadaan)->value('namapengadaan');
                                         ?>
                                         <tr>
                                             <td class="center">{{$key->id}}</td>

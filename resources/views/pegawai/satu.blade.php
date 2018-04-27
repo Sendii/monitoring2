@@ -40,7 +40,7 @@
                                             <th class="center">Kode PJ</th>
                                             <th class="center">Nomor RegisUmum</th>
                                             <th class="center">Tanggal RegisUmum</th>
-                                            <th class="center">Nomor Bppj</th>
+                                            <th class="center">Nomor Ppbj</th>
                                             <th class="center">Tanggal Permintaan</th>
                                             <th class="center">Tanggal Dibutuhkan</th>
                                             <th class="center">Items Pengadaan</th>

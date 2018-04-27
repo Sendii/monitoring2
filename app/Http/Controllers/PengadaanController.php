@@ -52,8 +52,8 @@ class PengadaanController extends Controller
     	return redirect()->route('allpengadaan');
     }
 
-    public function viewPpbj($id_pengadaan) {
-        $ppbj['ppbjall'] = pbbj::where('id_pengadaan', $id_pengadaan)->with('Barang')->get();
+    public function viewPpbj($namapengadaan) {
+        $ppbj['ppbjall'] = pbbj::where('id_pengadaan', $namapengadaan)->with('Barang')->get();
         $ppbj['barangall'] = barang::get();
         // dd($ppbj);
 

@@ -46,7 +46,7 @@
                                                 <td class="center">{{$key->namapengadaan}}</td>
                                                 <td class="center"><a href="{{route('editpengadaan', [$key->id])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah Data</a></td>
                                                 <td class="center">
-                                                    <a href="{{route('viewPpbjitems', ['id_pengadaan' => $key->id])}}"><i class="fa fa-book"></i>Lihat Ppbj</a>
+                                                    <a href="{{route('viewPpbjitems', ['id_pengadaan' => $key->namapengadaan])}}"><i class="fa fa-book"></i>Lihat Ppbj</a>
                                                 </td>
                                             </tr>
                                             @endforeach
