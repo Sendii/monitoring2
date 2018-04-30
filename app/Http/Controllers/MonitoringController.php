@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\prosesrealisasi;
 use App\prosespengadaan;
 use App\barangrealisasi;
+use App\barangrealisasi2;
 use App\unitkerja;
 use App\pengadaan;
 use App\pegawai;
@@ -16,7 +17,7 @@ class MonitoringController extends Controller
 {
     public function allMonitoring()
     {
-        $data['allMonitor'] = prosespengadaan::orderBy('updated_at', 'DESC')->paginate(10);
+        $data['allMonitor'] = prosespengadaan::with('getPpbj')->orderBy('updated_at', 'DESC')->paginate(10);
         $data['cekPegawai'] = prosespengadaan::get();
         
         return view('kadiv.monitoring')->with($data);
@@ -39,8 +40,10 @@ class MonitoringController extends Controller
         $data['jumlahppbj3'] = barangrealisasi::where('id', '=', $id)->count();
         $data['barang']    = barang::find($id);
         $data['barangg2']    = barangrealisasi::find($id);
+        $data['barangg3']    = barangrealisasi2::find($id);
         $data['barangnya'] = barang::where('id', '=', $id)->get();
         $data['barangnya2'] = barangrealisasi::where('id', '=', $id)->get();
+        $data['barangnya3'] = barangrealisasi2::where('id', '=', $id)->get();
         $data['id']        = $id;
         // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
         return view('kadiv.view')->with($data);

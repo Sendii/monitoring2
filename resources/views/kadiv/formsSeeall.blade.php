@@ -562,7 +562,7 @@
                                                 </thead>
                                                 <tbody class="tbody3">
                                                 @if($prosespengadaan->kodebarang2 != "")
-                                                    @foreach($barangnya2 as $barang2)
+                                                    @foreach($barangnya3 as $barang2)
                                                 <tr>
                                                     <td>
                                                         <input type="text" name="namakontrak[]" class="form-control" placeholder="Nama Barang/Jasa" value="{{ $barang2->nama_barang }}" disabled="disabled">
@@ -586,7 +586,7 @@
                                                         <td colspan="3"></td>
                                                         <td>
                                                             @if($prosespengadaan->kodebarang3 != "")
-                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak" placeholder="Total Semua" value="{{$barangg2->hargatotal_brg}}" disabled="disabled">
+                                                            <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak" placeholder="Total Semua" value="{{$barangg3->hargatotal_brg}}" disabled="disabled">
                                                             @else
                                                             <input type="text" name="subtotalkontrak3" class="form-control subtotalkontrak" placeholder="Total Semua" value="" disabled="disabled">
                                                             @endif

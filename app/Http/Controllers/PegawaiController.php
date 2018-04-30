@@ -8,6 +8,7 @@ use App\pengadaan;
 use App\pegawai;
 use App\jabatan;
 use App\pbbj;
+use Response;
 use Alert;
 
 
@@ -23,6 +24,7 @@ class PegawaiController extends Controller
     public function allPegawai()
     {
         $data['allPegawai'] = pegawai::paginate('15');
+        // return Response::json($data['allPegawai']);
         
         return view('pegawai.all')->with($data);
     }
@@ -70,10 +72,12 @@ class PegawaiController extends Controller
         $pegawai = pbbj::where('id_pegawai', '=', $namapegawai)->get();
         $ppbj = pbbj::select('no_ppbj')->groupBy('no_ppbj')->where('id_pegawai', $namapegawai)->get();
         $prosespengadaan = prosespengadaan::get();
+        $cekpegawai = prosespengadaan::where('id_pegawai', $namapegawai)->get();
         return view('pegawai.ppbj', [
             'ppbjPegawai' => $pegawai,
             'ppbj' => $ppbj,
-            'prosespengadaans' => $prosespengadaan
+            'prosespengadaans' => $prosespengadaan,
+            'cekpegawais' => $cekpegawai
         ]);
     }
 
@@ -81,4 +85,26 @@ class PegawaiController extends Controller
         $ppbj['ppbj'] = pbbj::where('no_ppbj', $no_ppbj)->get();
         return view('pegawai.satu')->with($ppbj);
     }
+
+    public function kd9() {
+        $data['ppbjkd9'] = prosespengadaan::where('selesai1', '<', 9)
+                                        ->orWhere('selesai2', '<', 9)
+                                        ->orWhere('selesai3', '<', 9)->get();
+        return view('pegawai/selesai.kd9')->with($data);
+    }
+    
+    public function sd9() {
+        $data['ppbjsd9'] = prosespengadaan::where('selesai1', '=', 9)
+                                        ->orWhere('selesai2', '=', 9)
+                                        ->orWhere('selesai3', '=', 9)->get();
+        return view('pegawai/selesai.sd9')->with($data);                              
+    }
+
+    public function ld9() {
+        $data['ppbjld9'] = prosespengadaan::where('selesai1', '>', 9)
+                                        ->orWhere('selesai2', '>', 9)
+                                        ->orWhere('selesai3', '>', 9)->get();
+        return view('pegawai/selesai.ld9')->with($data);
+    }
+
 }

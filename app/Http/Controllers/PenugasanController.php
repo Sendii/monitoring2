@@ -185,9 +185,11 @@ class PenugasanController extends Controller
 
         if ($r->input('pr_nokon') == "") {
             $table->no_kon2 = "";
+            $newproses->selesai2 = $r->input('selesaivendor2');
         } else {
             $table->no_kon2     = $r->input('pr_nokon');
             $table->selesaikon2 = date('d-m-Y');
+            $newproses->selesai2 = $r->input('selesaivendorr2');
         }
 
         if($r->input('pr_tglpsi') == "") {
@@ -251,9 +253,11 @@ class PenugasanController extends Controller
 
         if ($r->input('pr3_nokon') == "") {
             $table->no_kon3 = "";
+            $newproses->selesai3 = $r->input('selesaivendor3');
         } else {
             $table->no_kon3     = $r->input('pr_nokon');
             $table->selesaikon3 = date('d-m-Y');
+            $newproses->selesai3 = $r->input('selesaivendorr3');
         }
 
         if($r->input('pr3_tglpsi') == "") {

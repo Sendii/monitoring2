@@ -139,7 +139,7 @@
             <h1 class="mbr-section-title align-left mbr-bold pb-3 mbr-fonts-style display-1">
                 DATABASE MYSQL</h1>
             <h3 class="mbr-section-subtitle align-left mbr-light pb-3 mbr-fonts-style display-5">
-                Beautiful simpe database</h3>
+                Beautiful simple database</h3>
             <p class="mbr-text align-left pb-3 mbr-fonts-style display-7">
                 adalah sebuah software atau perangkat lunak system manajemen berbasis data SQL atau juga multi user dan DBMD Multithread. Pada dasarnya, MySQL ini sebenarnya adalah turunan yang berasal dari salah satu konsep utama dalam database yang memang telah ada sebelumnya yaitu SQL atau Structured Query Language. Konsep ini digunakan untuk seleksi atau pemilihan dan pemasukan data dimana hal ini memungkinkan pengerjaan operasi data yang otomatis lebih mudah.
             </p>
@@ -180,14 +180,11 @@
                         <p>Programmer<br>Designer &amp; Supporter<br></p>
                     </div>
                     <div class="item-social pt-2">
-                        <a href="https://twitter.com/mobirise" target="_blank">
+                        <a href="https://instagram.com/adityrfai" target="_blank">
                             <span class="p-1 mbr-iconfont mbr-iconfont-social socicon-instagram socicon"></span>
                         </a>
-                        <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
+                        <a href="https://www.facebook.com/adityarifai1404" target="_blank">
                             <span class="p-1 socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
-                        </a>
-                        <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
-                            <span class="p-1 socicon-googleplus socicon mbr-iconfont mbr-iconfont-social"></span>
                         </a>
                         <a href="https://www.linkedin.com/in/mobirise" target="_blank">
                             
@@ -219,9 +216,6 @@
                         <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
                             <span class="p-1 socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
                         </a>
-                        <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
-                            <span class="p-1 socicon-googleplus socicon mbr-iconfont mbr-iconfont-social"></span>
-                        </a>
                         <a href="https://www.linkedin.com/in/mobirise" target="_blank">
                             
                         </a>
@@ -246,14 +240,11 @@
                         <p>The Real<br>Programmer &amp; Developer</p>
                     </div>
                     <div class="item-social pt-2">
-                        <a href="https://twitter.com/mobirise" target="_blank">
+                        <a href="https://instagram.com/sendiii13" target="_blank">
                             <span class="p-1 mbr-iconfont mbr-iconfont-social socicon-instagram socicon"></span>
                         </a>
-                        <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
+                        <a href="https://www.facebook.com/Sendaaaay" target="_blank">
                             <span class="p-1 socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
-                        </a>
-                        <a href="https://plus.google.com/u/0/+Mobirise" target="_blank">
-                            <span class="p-1 socicon-googleplus socicon mbr-iconfont mbr-iconfont-social"></span>
                         </a>
                         <a href="https://www.linkedin.com/in/mobirise" target="_blank">
                             
@@ -277,7 +268,7 @@
     <div class="container">
         <div class="media-container-row title">
             <div class="col-12 col-md-8">
-                <div class="mbr-section-btn align-center"><a class="btn btn-primary-outline display-4" href="#top">BERANDA</a>
+                <div class="mbr-section-btn align-center">
                     <a class="btn btn-primary-outline display-4" href="#top">KEMBALI KE ATAS</a></div>
             </div>
         </div>

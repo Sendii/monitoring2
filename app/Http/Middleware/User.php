@@ -30,6 +30,6 @@ class User
         return redirect('monitoring');
     }
 
-    return redirect('/userspeople');
+    return redirect('/');
     }
 }

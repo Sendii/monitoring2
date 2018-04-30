@@ -26,14 +26,14 @@ Route::get('ppbjcabang', 'BppjController@viewppbjcabang')->name('viewppbjcabang'
 Route::get('ppbjpusat', 'BppjController@viewppbjpusat')->name('viewppbjpusat');
 Route::get('/info','HomeController@info');
 
-Route::middleware(['kadiv'])->group(function () {
+Route::middleware(['kadiv'], 'auth')->group(function () {
 	Route::get('/monitoring', 'MonitoringController@allMonitoring')->name('allMonitoring');
 });
 Route::middleware(['publicpeople'])->group(function () {
 	Route::get('userspeople', 'HomeController@userpeople')->name('userpeople');
 });
 
-Route::middleware(['admin']&&['kadiv'], 'auth')->group(function () {
+Route::middleware([['admin']||['kadiv'], 'auth'])->group(function () {
 	Route::get('/allPegawai', 'PegawaiController@allPegawai')->name('allPegawai');
 	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
 	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
@@ -58,14 +58,30 @@ Route::middleware(['admin']&&['kadiv'], 'auth')->group(function () {
 	Route::get('ppbjterselesaikanse/{vendor}', 'BppjController@vendor');
 	Route::get('ppbjterselesaikansee/{vendor2}', 'BppjController@vendor2');
 	Route::get('ppbjterselesaikanseee/{vendor3}', 'BppjController@vendor3');
+
+	Route::get('ppbj/kont1/{no_kon}', 'BppjController@kontrakselesai');
+	Route::get('ppbj/kont2/{no_kon2}', 'BppjController@kontrakselesai2');
+	Route::get('ppbj/kont3/{no_kon3}', 'BppjController@kontrakselesai3');
+	Route::get('ppbj/vend1/{vendor}', 'BppjController@vendor');
+	Route::get('ppbj/vend2/{vendor2}', 'BppjController@vendor2');
+	Route::get('ppbj/vend3/{vendor3}', 'BppjController@vendor3');
+
 	Route::get('ppbjselesai/{id_pegawai}', 'BppjController@pegawai')->name('viewppbjPegawai');
-	Route::get('ppbjbelumselesai/{no_kon}', 'BppjController@kontrakselesai');
+	Route::get('showppbj/{no_ppbj}', 'BppjController@ppbj');
+	// Route::get('ppbjbelumselesai/{no_kon}', 'BppjController@kontrakselesai');
+
+	Route::get('ppbj9hari/{namapegawai}', 'PegawaiController@sd9');
+	Route::get('ppbjL9hari/{namapegawai}', 'PegawaiController@ld9');
+	Route::get('ppbjK9hari/{namapegawai}', 'PegawaiController@kd9');
 });
 
-Route::middleware(['admin']&&['kadiv'], 'auth')->group(function () {
+Route::middleware(['admin'], ['auth'])->group(function () {
 	Route::get('/admin', 'HomeController@index')->name('home');
 	Route::post('realisasiPpbj', 'BppjController@prosesrealisasi')->name('prosesrealisasi');
-	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj')->middleware('auth');
+	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
+	Route::get('/allPpbj/kd9', 'BppjController@allPpbjkd9')->name('allPpbjkd9');
+	Route::get('/allPpbj/sd9', 'BppjController@allPpbjsd9')->name('allPpbjsd9');
+	Route::get('/allPpbj/ld9', 'BppjController@allPpbjld9')->name('allPpblkd9');
 	Route::get('/inputPpbj', 'BppjController@addPpbj');
 	Route::get('inputPpbjs/{id}', 'PenugasanController@addPpbjs');
 	Route::post('savePpbjs/{id}', 'PenugasanController@savePpbjs');
@@ -98,10 +114,10 @@ Route::middleware(['admin']&&['kadiv'], 'auth')->group(function () {
 	Route::get('/unitpusat', 'UnitKerjaController@allPusat');
 	Route::get('viewppbj/unitpusat/{id_unit}', 'UnitKerjaController@viewPpbj')->name('viewPpbjpusat');
 	Route::get('viewppbj/items/{namapengadaan}', 'PengadaanController@viewPpbj')->name('viewPpbjitems');
-	Route::get('pegawai/ppbj/{random}/{namapegawai}', 'PegawaiController@ppbjPegawai')->name('ppbjPegawai');
+	Route::get('pegawai/ppbjs/{namapegawai}', 'PegawaiController@ppbjPegawai')->name('ppbjPegawai');
 	Route::get('pegawai/ppbj/{no_ppbj}', 'PegawaiController@ppbjPegawaigan')->name('ppbjPegawais');
 });
-Route::middleware([['kasubag']&&['admin'],'auth'])->group(function () {
+Route::middleware([['kasubag']||['admin'], 'auth'])->group(function () {
 	Route::get('/receivePpbj', 'PenugasanController@receivePpbj')->name('receivePpbj');
 	Route::get('/receivePpbj/approve/', 'PenugasanController@ppbjApprove')->name('ppbjApprove');
 	Route::get('/receivePpbj/noapprove/', 'PenugasanController@ppbjnoApprove')->name('ppbjnoApprove');

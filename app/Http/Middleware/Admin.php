@@ -47,7 +47,7 @@ class Admin
         }elseif(Auth::user() &&  Auth::user()->akses == 'Kadiv') {
             return redirect('monitoring');
         } 
-        return redirect('/userspeople');
+        return redirect('/');
     }
     /**
      * Determine if the user is logged in to any of the given guards.

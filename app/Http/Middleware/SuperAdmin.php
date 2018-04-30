@@ -29,6 +29,6 @@ class SuperAdmin
             return redirect('receivePpbj');
         }
 
-        return redirect('/userspeople');
+        return redirect('/');
     }
 }

@@ -12,8 +12,6 @@
     <link rel="stylesheet" href=" {{asset('bower_components/font-awesome/css/font-awesome.min.css')}} ">
     <!-- Ionicons -->
     <link rel="stylesheet" href=" {{asset('bower_components/Ionicons/css/ionicons.min.css')}} ">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="{{asset('bower_components/jvectormap/jquery-jvectormap.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -21,7 +19,7 @@
     <link rel="stylesheet" href="{{asset('dist/css/skins/_all-skins.min.css')}}">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" background="github.png">
+<body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
         <header class="main-header">
@@ -43,69 +41,6 @@
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <!-- Messages: style can be found in dropdown.less-->
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
-                                <li>
-                                    <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
-                                        <li>
-                                            <!-- start message -->
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img style="width:45px; height:45px; margin-:" src="/uploads/avatar/defaults.jpg" class="img-circle" alt="User Image" />
-                                                </div>
-                                                <h4>Support Team<small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <!-- end message -->
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>Technosoft Design Team<small><i class="fa fa-clock-o"></i> 2 hours</small></h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>Developers<small><i class="fa fa-clock-o"></i> Today</small></h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>Sales Department<small><i class="fa fa-clock-o"></i> Yesterday</small></h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="pull-left">
-                                                    <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                                                </div>
-                                                <h4>Reviewers<small><i class="fa fa-clock-o"></i> 2 days</small></h4>
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
-                        </li>
                         <!-- Notifications: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -359,15 +294,38 @@
                         </ul>
                     </li>
                     @elseif (Auth::user() && Auth::user()->akses == 'Kadiv')
-                    <li>
-                        <a href="{{url('monitoring')}}">
-                            <i class="fa fa-bank"></i> <span>Data Ppbj</span>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-list"></i>
+                            <span>PPBJ</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
+                        <ul class="treeview-menu" style="display: none;">
+                            <li class="treeview">
+                                <a href=" {{url('/allPpbj')}} "><i class="fa fa-desktop"></i> Lihat Data
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu" style="display: none;">
+                                    <li><a href="{{url('allPpbj')}}"><i class="fa fa-book"></i>Semua Ppbj</a></li>
+                                    <li><a href="{{url('ppbjterselesaikan')}}"><i class="fa fa-book"></i> Ppbj Terselesaikan</a></li>
+                                    <li><a href=" {{url('ppbjbelumselesai')}} "><i class="fa fa-download"></i> Ppbj Belum Terselesaikan</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
-                    <li>
-                        <a href="{{url('allPegawai')}}">
-                            <i class="fa fa-user"></i> <span>Pegawai</span>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span>Pegawai</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a href=" {{url('/allPegawai')}} "><i class="fa fa-user"></i> Lihat Data</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="{{url('allUnit')}}">
@@ -394,8 +352,8 @@
         <!-- AdminLTE App -->
         <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 
-        <script src="{{asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
-        <script src="{{asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script>
+        <!-- <script src="{{asset('plugins/jvectormap/jquery-jvectormap-1.2.2.min.js')}}"></script>
+        <script src="{{asset('plugins/jvectormap/jquery-jvectormap-world-mill-en.js')}}"></script> -->
         <!-- SlimScroll -->
         <script src="{{asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 

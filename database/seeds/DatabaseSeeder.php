@@ -13,9 +13,7 @@ class DatabaseSeeder extends Seeder
     {
        $this->call(User::class); 
        $this->call(BarangSeeder::class);
-       $this->call(PpbjSeeder::class);
-       $this->call(ProsesPengadaan::class);
 
-       $this->command->info('Data telah dimigrate');
+       $this->command->info('Data telah dimigrate gan');
     }
 }

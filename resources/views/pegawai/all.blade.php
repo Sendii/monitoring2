@@ -38,9 +38,9 @@
                                             <th class="center">Jabatan</th>
                                             <th class="center">No. Telepon</th>
                                             @if(Auth::user() && Auth::user()->akses == 'Admin')
+                                            @elseif(Auth::user() && Auth::user()->akses == 'Kadiv')
                                             <th class="center">Ubah Data</th>
                                             <th class="center">Lihat PPBJ</th>
-                                            @else
                                             <!-- Ini kosong jika bukan admin -->
                                             @endif
                                         </tr>
@@ -55,10 +55,10 @@
                                                 <td class="center">{{$key->namapegawai}}</td>
                                                 <td class="center">{{ $jabatan }}</td>
                                                 <td class="center">{{$key->notelp}}</td>
-                                                <?php $random = str_random(5); ?>
                                                 @if(Auth::user() && Auth::user()->akses == 'Admin')
+                                                @elseif(Auth::user() && Auth::user()->akses == 'Kadiv')
                                                     <td class="center"><a href="{{route('editPegawai', [$key->id_pegawai])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah Data</a></td>
-                                                    <td class="center"><a href="{{url('pegawai/ppbj', [$key->namapegawai, $random])}}"><i class="fa fa-edit"></i>Lihat PPBJ</a></td>
+                                                    <td class="center"><a href="{{url('pegawai/ppbjs', [$key->namapegawai])}}"><i class="fa fa-edit"></i>Lihat PPBJ</a></td>
                                                 @else
                                                 <!-- Anda bukan admin -->
                                                 @endif

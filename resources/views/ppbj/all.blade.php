@@ -30,6 +30,9 @@
                                 @include('errors.message')
                             </div>
                         </div>
+                        <div class="container">
+                        <a href="" data-toggle="modal" data-target="#modalData" class="btn bg-purple"><i class="fa fa-search"></i> Ppbj berdasarkan hari</a>
+                        </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="table-responsive">
@@ -195,6 +198,24 @@
                                                     <center><i class="fa fa-plus-square" aria-hidden="true"></i>Tambah</center>
                                                 </a>
                                             </td>
+                                            <div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header text-center">
+                                                            <button type="button" class="close" aria-label="Close">
+                                                              <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+                                                          </button>
+                                            <i>Lihat Ppbj Berdasarkan Perhitungan Hari <br></i>
+                                            <a href="{{route('allPpbjkd9')}}" class="btn btn-primary">Ppbj <9 Hari</a>
+                                            <a href="{{route('allPpbjsd9')}}" class="btn btn-primary">Ppbj 9 Hari</a>&nbsp;
+                                            <a href="{{route('allPpblkd9')}}" class="btn btn-primary">Ppbj >9 Hari</a>&nbsp;
+                                                    </div>
+                                                    <div class="modal-footer d-flex justify-content-center">
+                                                        <center><a href="{{url('allPpbj')}}" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i></a></center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                             </tr>
                                             @endforeach
                                         </tbody>

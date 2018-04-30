@@ -143,15 +143,54 @@ class HomeController extends Controller
     }
 
     public function getChart() {
-       $users = DB::table('users')->get();
-        $chart = Charts::database($users, 'bar', 'highcharts')
-        ->title("Monthly new Register Users")
-        ->responsive(false)
-        ->dimensions(1000, 500)
-        ->labels("Total Users")
-        ->groupByMonth(date('Y'));
+     $ppbjapprove = prosespengadaan::where('status', '=', 'Accepted')
+     ->get();
+     $chartapprove = Charts::database($ppbjapprove, 'bar', 'highcharts')
+     ->title(" ")
+     ->elementLabel("Total Ppbj")
+     ->dimensions(900, 500)
+     ->responsive(false)
+     ->groupByMonth(date('Y'), true);
 
-        return view('chart', ['chart' => $chart,
-        'users' => $users]);
-    }
+     $ppbjnoapprove = prosespengadaan::where('status', '=', 'NonAccepted')
+     ->get();
+     $chartnoapprove = Charts::database($ppbjnoapprove, 'bar', 'highcharts')
+     ->title(" ")
+     ->elementLabel("Total Ppbj")
+     ->dimensions(900, 500)
+     ->responsive(false)
+     ->groupByMonth(date('Y'), true);
+
+     $ppbjPegawai = prosespengadaan::orWhereNotNull('selesai1')
+                              ->whereNotNull('mulaippbj1')
+                              ->whereNotNull('mulaippbj2')
+                              ->whereNotNull('mulaippbj3')
+                              ->whereNotNull('tgl_spph2')
+                              ->orWhereNotNull('selesai2')
+                              ->whereNotNull('tgl_spph3')
+                              ->orWhereNotNull('selesai3')
+     ->get();
+     $chartppbjPegawai = Charts::database($ppbjPegawai, 'bar', 'highcharts')
+     ->title(" ")
+     ->elementLabel("Total Ppbj Selesai")
+     ->dimensions(900, 500)
+     ->responsive(false)
+     ->groupByMonth(date('Y'), true);
+
+     $ppbjPegawai2 = prosespengadaan::orWhere('selesai1')
+                              ->orWhere('selesai2')
+                              ->orWhere('selesai3')
+                              ->orWhere('mulaippbj1')
+                              ->orWhere('mulaippbj2')
+                              ->orWhere('mulaippbj3')
+     ->get();
+     $chartppbjPegawai2 = Charts::database($ppbjPegawai2, 'bar', 'highcharts')
+     ->title(" ")
+     ->elementLabel("Total Ppbj Tidak Selesai")
+     ->dimensions(900, 500)
+     ->responsive(false)
+     ->groupByMonth(date('Y'), true);
+
+     return view('chart', compact('chartapprove', 'chartnoapprove', 'chartppbjPegawai', 'chartppbjPegawai2'));
+ }
 }

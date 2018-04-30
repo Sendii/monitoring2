@@ -967,7 +967,6 @@
                             @endif
                         </div>
                             @else
-                                <?php echo "belum menjadi kontrak"; ?>
                             @endif
                         @else
                         @endif

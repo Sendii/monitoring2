@@ -19,13 +19,32 @@ class BppjController extends Controller
   public function allPpbj() {
     $data['ppbjall'] = pbbj::with('Barang')->with('getProsespengadaan')->orderBy('id', 'desc')->paginate(20);
     $data['hehe'] = pbbj::select('no_ppbj')->groupBy('no_ppbj')->get();
-    $a = prosespengadaan::where([
-                                  ['id_pegawai', '=', 'Pak Taufiq'],
-                                  ['selesai1', '>=', '1']
-                                ])->get();
     $data['barangall'] = barang::get();
     return view('ppbj.all')->with($data);
   }
+
+  public function allPpbjkd9() {
+    $data = prosespengadaan::where('selesai1', '<', 9)
+                          ->orWhere('selesai2', '<', 9)
+                          ->orWhere('selesai3', '<', 9)->get();
+    return view('ppbj/hari.kd9', ['ppbjallkd9' => $data]);
+  }
+
+  public function allPpbjsd9() {
+    $data = prosespengadaan::where('selesai1', '=', 9)
+                          ->orWhere('selesai2', '=', 9)
+                          ->orWhere('selesai3', '=', 9)->get();
+    return view('ppbj/hari.sd9', ['ppbjallsd9' => $data]);
+  }
+
+  public function allPpbjld9() {
+    $data = prosespengadaan::where('selesai1', '>', 9)
+                          ->orWhere('selesai2', '>', 9)
+                          ->orWhere('selesai3', '>', 9)->get();
+    return view('ppbj/hari.ld9', ['ppbjallld9' => $data]);
+  }
+
+
   public function addPpbj() {
     $data['unitkerja'] = unitkerja::get();
     $data['pengadaan'] = pengadaan::get();
@@ -273,13 +292,10 @@ class BppjController extends Controller
                               ->orWhereNotNull('selesai1')
                               ->orWhereNotNull('selesai2')
                               ->orWhereNotNull('selesai3')
-                              ->whereNotNull('no_kon')
-                              ->whereNotNull('no_kon2')
-                              ->whereNotNull('no_kon3')
                               ->get();                     
     }else if($_requestUrl == "ppbjbelumselesai"){
         $data['prosespengadaan'] = prosespengadaan::with('getPpbj')
-                              ->where('selesai1')
+                              ->orWhere('selesai1')
                               ->orWhere('selesai2')
                               ->orWhere('selesai3')
                               ->get();
@@ -336,8 +352,29 @@ class BppjController extends Controller
     return view('ppbj.vendorselesai3')->with($data);
   }
 
+  public function unvendor($vendor) {
+    $data['prosespengadaan'] = prosespengadaan::where('vendor', '=', $vendor)->get();
+    return view('ppbj.vendorbelumselesai')->with($data);
+  }
+
+  public function unvendor2($vendor2) {
+    $data['prosespengadaan'] = prosespengadaan::where('vendor2', '=', $vendor2)->get();
+    return view('ppbj.vendorbelumselesai2')->with($data);
+  }
+
+  public function unvendor3($vendor3) {
+    $data['prosespengadaan'] = prosespengadaan::where('vendor3', '=', $vendor3)->get();
+    return view('ppbj.vendorbelumselesai3')->with($data);
+  }
+
   public function pegawai($id_pegawai) {
     $data['ppbjPegawai'] = prosespengadaan::where('id_pegawai', '=', $id_pegawai)->get();
     return view('ppbj.pegawaiselesai')->with($data);
+  }
+
+  public function ppbj($no_ppbj) {
+    $data['ppbj'] = pbbj::where('no_ppbj', '=', $no_ppbj)->get();
+
+    return view('ppbj.ppbj')->with($data);
   }
 }

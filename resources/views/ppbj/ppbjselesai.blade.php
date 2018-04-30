@@ -45,6 +45,7 @@
                                     <thead>
                                         <tr>
                                             <th class="center">No. </th>
+                                            <th class="center">No. Ppbj</th>
                                             <th class="center">Pemroses</th>
                                             <th class="center">Unit</th>
                                             <th class="center">Nomor Kontrak </th>
@@ -60,43 +61,66 @@
                                             $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->id_pengadaan)->value('namapengadaan');
                                         ?>
                                         <tr>
+                                            @if($key->selesai1 != "")
                                         	<td class="center">{{$key->id}}</td>
+                                            <td class="center">
+                                                <a href="{{url('showppbj', [$key->getPpbj->no_ppbj])}}">{{$key->getPpbj->no_ppbj}}</a>
+                                            </td>
                                         	<td class="center">
-                                        		<a href="{{route('viewppbjPegawai', [$key->id_pegawai])}}">{{$pegawai}}</a>
+                                        		<a href="{{route('viewppbjPegawai', [$key->id_pegawai])}}"><i class="fa fa-user text-aqua" aria-hidden="true"> </i>{{$pegawai}}</a>
                                         	</td>
                                         	<td class="center">
-                                        		<a href="{{route('viewPpbj', [$key->getPpbj->id_unit])}}">{{$unitkerja}}</a>
+                                        		<a href="{{route('viewPpbj', [$key->getPpbj->id_unit])}}"><i class="fa fa-university text-aqua" aria-hidden="true"> </i>{{$unitkerja}}</a>
                                         	</td>
+                                            @endif
                                         	<td class="center">
                                                 <!-- 1 -->
-                                        		<a href="{{url('ppbjterselesaikan', [$key->no_kon])}}">
-                                                    @if($key->no_kon != "")
-                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon}}</center>
+                                                @if($key->no_kon != "")
+                                                    @if($key->selesai1 != "")
+                                        		      <a href="{{url('ppbjterselesaikan', [$key->no_kon])}}">
+                                                        <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon}}</center>
+                                                      </a>
                                                     @endif
-                                                </a>
+                                                @endif
                                                 <!-- 2 -->
-                                                <a href="{{url('ppbjterselesaikans', [$key->no_kon2])}}">
-                                                    @if($key->no_kon2 != "")
-                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon2}}</center>
+                                                @if($key->no_kon2 != "")
+                                                    @if($key->selesai2 != "")
+                                                    <a href="{{url('ppbjterselesaikans', [$key->no_kon2])}}">
+                                                        <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon2}}</center>
+                                                    </a>
                                                     @endif
-                                                </a>
+                                                @endif
                                                 <!-- 3 -->
-                                                <a href="{{url('ppbjterselesaikanss', [$key->no_kon3])}}">
-                                                    @if($key->no_kon3 != "")
-                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon3}}</center>
+                                                @if($key->no_kon3 != "")
+                                                    @if($key->selesai3 != "")
+                                                    <a href="{{url('ppbjterselesaikanss', [$key->no_kon3])}}">
+                                                        <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon3}}</center>
+                                                    </a>
                                                     @endif
-                                                </a>
+                                                @endif
                                         	</td>
                                         	<td class="center">
-                                        		<a href="{{url('ppbjterselesaikanse', [$key->vendor])}}">
-                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor}}</center>
-                                                </a>
-                                                <a href="{{url('ppbjterselesaikansee', [$key->vendor2])}}">
-                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor2}}</center>
-                                                </a>
-                                                <a href="{{url('ppbjterselesaikanseee', [$key->vendor3])}}">
-                                                    <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor3}}</center>
-                                                </a>
+                                                @if($key->vendor != "")
+                                                    @if($key->selesai1 != "")
+                                        		      <a href="{{url('ppbjterselesaikanse', [$key->vendor])}}">
+                                                        <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor}}</center>
+                                                      </a>
+                                                    @endif
+                                                @endif
+                                                @if($key->vendor2 != "")
+                                                    @if($key->selesai2 != "")
+                                                    <a href="{{url('ppbjterselesaikansee', [$key->vendor2])}}">
+                                                        <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor2}}</center>
+                                                    </a>
+                                                    @endif
+                                                @endif
+                                                @if($key->vendor3 != "")
+                                                    @if($key->selesai3 != "")
+                                                    <a href="{{url('ppbjterselesaikanseee', [$key->vendor3])}}">
+                                                        <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor3}}</center>
+                                                    </a>
+                                                    @endif
+                                                @endif
                                         	</td>
                                          </tr>
                                             @endforeach
@@ -111,6 +135,7 @@
                                     <thead>
                                         <tr>
                                             <th class="center">No. </th>
+                                            <th class="center">No. Ppbj</th>
                                             <th class="center">Pemroses</th>
                                             <th class="center">Unit</th>
                                             <th class="center">Nomor Kontrak </th>
@@ -128,6 +153,9 @@
                                         <tr>
                                             <td class="center">{{$key->id}}</td>
                                             <td class="center">
+                                                <a href="{{url('showppbj', [$key->getPpbj->no_ppbj])}}">{{$key->getPpbj->no_ppbj}}</a>
+                                            </td>
+                                            <td class="center">
                                                 <a href="{{route('viewppbjPegawai', [$key->id_pegawai])}}">{{$pegawai}}</a>
                                             </td>
                                             <td class="center">
@@ -136,38 +164,50 @@
                                             <td class="center">
                                                 <!-- 1 -->
                                                 <a href="{{url('ppbjbelumselesaiie', [$key->no_kon])}}">
-                                                    @if($key->no_kon != "")
+                                                @if($key->no_kon != "")
+                                                    @if($key->selesai1 == "")
                                                     <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon}}</center>
                                                     @endif
+                                                @endif
                                                 </a>
                                                 <!-- 2 -->
                                                 <a href="{{url('ppbjbelumselesaii', [$key->no_kon2])}}">
-                                                    @if($key->no_kon2 != "")
+                                                @if($key->no_kon2 != "")
+                                                    @if($key->selesai2 == "")
                                                     <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon2}}</center>
                                                     @endif
+                                                @endif
                                                 </a>
                                                 <!-- 3 -->
                                                 <a href="{{url('ppbjbelumselesaiii', [$key->no_kon3])}}">
-                                                    @if($key->no_kon3 != "")
+                                                @if($key->no_kon3 != "")
+                                                    @if($key->selesai3 == "")
                                                     <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->no_kon3}}</center>
                                                     @endif
+                                                @endif
                                                 </a>
                                             </td>
                                             <td class="center">
                                                 <a href="{{url('ppbjbelumselesaie', [$key->vendor])}}">
-                                                    @if($key->vendor != "")
+                                                @if($key->vendor != "")
+                                                    @if($key->selesai1 == "")
                                                     <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor}}</center>
                                                     @endif
+                                                @endif
                                                 </a>
                                                 <a href="{{url('ppbjbelumselesaiee', [$key->vendor2])}}">
-                                                    @if($key->vendor2 != "")
+                                                @if($key->vendor2 != "")
+                                                    @if($key->selesai2 == "")
                                                     <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor2}}</center>
                                                     @endif
+                                                @endif
                                                 </a>
                                                 <a href="{{url('ppbjbelumselesaieee', [$key->vendor3])}}">
-                                                    @if($key->vendor3 != "")
+                                                @if($key->vendor3 != "")
+                                                    @if($key->selesai3 == "")
                                                     <center><i class="fa fa-arrow-right" aria-hidden="true"> </i>{{$key->vendor3}}</center>
                                                     @endif
+                                                @endif
                                                 </a>
                                             </td>
                                          </tr>
