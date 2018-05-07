@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
-
+@include('layouts.adminlte')
 <head>
 </head>
 <link rel="stylesheet" href="{{asset('css/select2.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/sweetalert.css')}}">
 
-<body class="hold-transition skin-blue sidebar-mini" background="github.png">
+<body class="hold-transition skin-blue sidebar-mini">
     {!! csrf_field() !!}
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -68,6 +69,7 @@
     </div>
     </div>
     <script type="text/javascript" src="{{asset('js/select2.full.min.js')}}"></script>
+    <script src="{{asset('js/sweetalert.min.js')}}"></script>
     <script type="text/javascript">
         $('.select2').select2();
     </script>

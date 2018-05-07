@@ -4,9 +4,7 @@
 <head>
     @extends('layouts.adminlte')
 </head>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="{{asset('css/dataTables.bootstrap.min.css')}}">
 <style type="text/css">
 .center {
     text-align: center;
@@ -31,7 +29,7 @@
                             </div>
                         </div>
                         <div class="container">
-                        <a href="" data-toggle="modal" data-target="#modalData" class="btn bg-purple"><i class="fa fa-search"></i> Ppbj berdasarkan hari</a>
+                            <a href="" data-toggle="modal" data-target="#modalData" class="btn bg-purple"><i class="fa fa-search"></i> Ppbj berdasarkan hari</a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -49,22 +47,29 @@
                                             <th class="center">Items Pengadaan</th>
                                             <th class="center">Unit Kerja</th>
                                             <th class="center">Nama Barang</th>
-                                            <th class="center">Harga Barang</th>
+                                            <th class="center">Harga Barang (Rp.)</th>
                                             <th class="center">Jumlah Barang</th>
-                                            <th class="center">Harga Total</th>
+                                            <th class="center">Harga Total (Rp.)</th>
                                             <th class="center">Ubah</th>
                                             <th class="center">Cek Proses</th>
                                             <th class="center">Status</th>
-                                            <th class="center">Tambah Ppbj</th>
+                                            <!-- <th class="center">Tambah Ppbj</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($ppbjall as $key)
                                         <?php
-                                            $unitkerja = \App\unitkerja::where('aa', '=', $key->id_unit)->value('aa');
-                                            $pegawai = \App\pegawai::where('namapegawai', '=', $key->id_pegawai)->value('namapegawai');
-                                            $cekpenyelesaian = \App\prosespengadaan::where('id', '=', $key->id)->value('selesaikon');
-                                            $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->id_pengadaan)->value('namapengadaan');
+                                        $unitkerja = \App\unitkerja::where('aa', '=', $key->id_unit)->value('aa');
+                                        $pegawai = \App\pegawai::where('namapegawai', '=', $key->id_pegawai)->value('namapegawai');
+                                        $cekpenyelesaian = \App\prosespengadaan::where('id_ppbj', '=', $key->id)->value('selesaikon');
+                                        $cekpengadaan = \App\pengadaan::where('namapengadaan', $key->id_pengadaan)->value('namapengadaan');
+                                        if(\App\prosespengadaan::whereNotNull('mulaippbj1')) {
+                                            $cekpengadaan1 = \App\prosespengadaan::whereNotNull('selesai1')->get();
+                                        }elseif(\App\prosespengadaan::whereNotNull('mulaippbj2')) {
+                                            $cekpengadaan2 = \App\prosespengadaan::whereNotNull('selesai2')->get();
+                                        }elseif(\App\prosespengadaan::whereNotNull('mulaippbj3')) {
+                                            $cekpengadaan3 = \App\prosespengadaan::whereNotNull('selesai3')->get();
+                                        }
                                         ?>
                                         <tr>
                                             <td class="center">{{$key->id}}</td>
@@ -109,17 +114,17 @@
                                                 <ul>
                                                     @foreach($key->Barang as $value)
                                                     <li>
-                                                        {{$value->harga_brg}}
+                                                        {{number_format($value->harga_brg,0)}}
                                                     </li>
                                                     @endforeach
                                                     @foreach($key->Barang2 as $value)
                                                     <li>
-                                                        {{$value->harga_brg}}
+                                                        {{number_format($value->harga_brg,0)}}
                                                     </li>
                                                     @endforeach
                                                     @foreach($key->Barang3 as $value)
                                                     <li>
-                                                        {{$value->harga_brg}}
+                                                        {{number_format($value->harga_brg)}}
                                                     </li>
                                                     @endforeach
                                                 </ul>
@@ -148,19 +153,19 @@
                                                     <?php $total = 0; ?>
                                                     @foreach($key->Barang as $value)
                                                     <li>
-                                                        {{$value->total_brg }}
+                                                        {{number_format($value->total_brg, 0) }}
                                                         <?php $total += $value->total_brg ?>
                                                     </li>
                                                     @endforeach
                                                     @foreach($key->Barang2 as $value)
                                                     <li>
-                                                        {{$value->total_brg }}
+                                                        {{number_format($value->total_brg,0) }}
                                                         <?php $total += $value->total_brg ?>
                                                     </li>
                                                     @endforeach
                                                     @foreach($key->Barang3 as $value)
                                                     <li>
-                                                        {{$value->total_brg }}
+                                                        {{number_format($value->total_brg,0) }}
                                                         <?php $total += $value->total_brg ?>
                                                     </li>
                                                     @endforeach
@@ -176,46 +181,46 @@
                                             <!-- <td class="center"><button class="btn btn-danger delete-btn" data-noppbj='{{$key->no_ppbj}}'  data-id='{{$key->id}}' href="{{route('delete_ppbj', [$key->id])}}">Delete</td> -->
                                                 <td class="center">
                                                     @if($pegawai != "" && $cekpenyelesaian != "")
-                                                        <center><span class="label label-success">Proses Selesai&nbsp;<i class="fa fa-check"></i></span></center>
+                                                    <center><span class="label label-success">Proses Selesai&nbsp;<i class="fa fa-check"></i></span></center>
                                                     @elseif($pegawai == "")
-                                                        <center><span class="label label-danger">Belum ada Pemroses&nbsp;<i class="fa fa-close"></i></span></center>
+                                                    <center><span class="label label-danger">Belum ada Pemroses&nbsp;<i class="fa fa-close"></i></span></center>
                                                     @elseif ($pegawai != "")
-                                                        <center><span class="label label-info">Dalam Proses&nbsp;<i class="fa fa-refresh"></i></span></center>
+                                                    <center><span class="label label-info">Dalam Proses&nbsp;<i class="fa fa-refresh"></i></span></center>
                                                     @endif
 
                                                     @if($key->status == 'Pending')
-                                                        <span class="label label-info">Belum di diVerifikasi</span>
+                                                    <span class="label label-info">Belum di diVerifikasi</span>
                                                     @elseif($key->status == 'Accepted')
-                                                        <span class="label label-success">Sudah di Verifikasi</span>
+                                                    <span class="label label-success">Sudah di Verifikasi</span>
                                                     @elseif($key->status == 'NonAccepted')
-                                                        <span class="label label-warning">Tidak di terverifikasi</span>
+                                                    <span class="label label-warning">Tidak di terverifikasi</span>
                                                     @else
                                                     <span class="label label-danger">Dikembalikan&nbsp;<i class="fa fa-close"></i></span>
                                                     @endif
                                                 </td>
-                                                <td class="center">
-                                                <a href="{{url('inputPpbjs', [$key->id])}}">
-                                                    <center><i class="fa fa-plus-square" aria-hidden="true"></i>Tambah</center>
-                                                </a>
-                                            </td>
-                                            <div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header text-center">
-                                                            <button type="button" class="close" aria-label="Close">
-                                                              <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
-                                                          </button>
-                                            <i>Lihat Ppbj Berdasarkan Perhitungan Hari <br></i>
-                                            <a href="{{route('allPpbjkd9')}}" class="btn btn-primary">Ppbj <9 Hari</a>
-                                            <a href="{{route('allPpbjsd9')}}" class="btn btn-primary">Ppbj 9 Hari</a>&nbsp;
-                                            <a href="{{route('allPpblkd9')}}" class="btn btn-primary">Ppbj >9 Hari</a>&nbsp;
-                                                    </div>
-                                                    <div class="modal-footer d-flex justify-content-center">
-                                                        <center><a href="{{url('allPpbj')}}" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i></a></center>
+                                                <!-- <td class="center">
+                                                    <a href="{{url('inputPpbjs', [$key->id])}}">
+                                                        <center><i class="fa fa-plus-square" aria-hidden="true"></i>Tambah</center>
+                                                    </a>
+                                                </td> -->
+                                                <div class="modal fade" id="modalData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header text-center">
+                                                                <button type="button" class="close" aria-label="Close">
+                                                                  <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+                                                              </button>
+                                                              <i>Lihat Ppbj Berdasarkan Perhitungan Hari <br></i>
+                                                              <a href="{{route('allPpbjkd9')}}" class="btn btn-primary">Ppbj <9 Hari</a>
+                                                                <a href="{{route('allPpbjsd9')}}" class="btn btn-primary">Ppbj 9 Hari</a>&nbsp;
+                                                                <a href="{{route('allPpblkd9')}}" class="btn btn-primary">Ppbj >9 Hari</a>&nbsp;
+                                                            </div>
+                                                            <div class="modal-footer d-flex justify-content-center">
+                                                                <center><a href="{{url('allPpbj')}}" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i></a></center>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -260,11 +265,10 @@
         });
     });
 </script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="{{asset('js/sweetalert.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example').DataTable();

@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{asset('css/select2.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap-datepicker.min.css')}}">
 
-<body class="hold-transition skin-blue sidebar-mini" background="github.png">
+<body class="hold-transition skin-blue sidebar-mini">
     <div class="content-wrapper">
         <div class="container-fluid spark-screen">
             <br>

@@ -361,10 +361,10 @@
                             <div class="clip">
                                 <div class="shadow"><span class="digit firstDigit"></span></div>
                             </div>
-                            <div class="msg">Sorry!<span class="triangle"></span></div>
+                            <div class="msg">Sorry.<span class="triangle"></span></div>
                         </div>
-                        <h2 class="h1" style="font-size:35px; font-c "><b>Sorry! Page not found</b></h2>
-                        <h2><b><a class="h1" style="font-size:25px; font-c " href="http://sucofindo.com">Back to Homepages</a></b></h2>
+                        <h2 class="h1" style="font-size:35px; font-c "><b>Sorry, Page not found.</b></h2>
+                        <h2><b><a class="h1" style="font-size:25px; font-c " href="{{url('/')}}">Back to Homepages</a></b></h2>
                     </div>
                 </div>
             </div>

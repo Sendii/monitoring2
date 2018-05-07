@@ -9,9 +9,6 @@
       text-align: center;
       }
    </style>
-   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
    <body class="hold-transition skin-blue sidebar-mini">
       @include('sidebar')
       <div class="content-wrapper">
@@ -73,11 +70,9 @@
          <strong>Powered &copy; 2018 <a href="#">PklTeam</a>.</strong> All rights
          reserved.
       </footer>
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
       <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
       <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
       </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
       <script type="text/javascript">
          $(document).ready(function() {
            $('#example').DataTable();

@@ -20,7 +20,7 @@
     display: block;
 }
 </style>
-<body class="hold-transition skin-blue sidebar-mini" background="github.png">
+<body class="hold-transition skin-blue sidebar-mini">
     <div class="content-wrapper">
         <div class="container-fluid spark-screen">
             <div class="row">

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html >
 <head>
-  <!-- Site made with Mobirise Website Builder v4.6.7, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.6.7, mobirise.com">
@@ -19,7 +18,6 @@
   <link rel="stylesheet" href="assets/dropdown/css/style.css">
   <link rel="stylesheet" href="assets/theme/css/style.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 </head>
 <body>
   <section class="menu cid-qOdZMBbrpl" once="menu" id="menu1-3">
@@ -310,10 +308,10 @@
                     </div>
                     <div class="card-box">
                         <h4 class="card-title pb-3 mbr-fonts-style display-7">
-                            Pendataan Barang
+                            Pendataan Ppbj
                         </h4>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            Menambah, Mengedit, dan juga Menghapus data Barang/Jasa pada Dashboard Admin. <a href="http://mobirise.com">Learn more...</a>
+                            Menambah, serta Memonitoring data Ppbj yang telah masuk. <a href="#">Learn more...</a>
                         </p>
                     </div>
                 </div>
@@ -326,10 +324,10 @@
                     </div>
                     <div class="card-box ">
                         <h4 class="card-title pb-3 mbr-fonts-style display-7">
-                            Memantau Peminjaman
+                            Memantau Kinerja
                         </h4>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            Melihat Statistik Peminjaman perbulan ataupun pertahunnya. <a href="http://mobirise.com">Learn more...</a>
+                            Melihat Statistik Kinerja Pegawai selama Pertahun. <a href="#">Learn more...</a>
                         </p>
                     </div>
                 </div>
@@ -345,7 +343,7 @@
                             Lengkap dengan Tanggal & Waktu
                         </h4>
                         <p class="mbr-text mbr-fonts-style display-7">
-                            Pada saat Pengembalian Barang, Waktu Otomatis akan terisi setelah barang dikembalikan. <a href="http://mobirise.com">Learn more...</a>
+                            Pada saat Menyelesaikan data-data Ppbj, akan ada otomatis tanggal yg menandai berapa lama ia mengerjakannya. <a href="#">Learn more...</a>
                         </p>
                     </div>
                 </div>
@@ -380,7 +378,7 @@
                 <div class="panel-item p-3">
                     <div class="card-block">
                         <div class="testimonial-photo">
-                            <img src="assets/images/why-system-admins-are-so-crucial-to-security-2-240x148.jpg" alt="" title="">
+                            <img src="assets/images/why-system-admins-are-so-crucial-to-security-2-240x148.jpg" alt="Administrator" title="">
                         </div>
                         <p class="mbr-text mbr-fonts-style display-7">
                            User Pengguna yang dapat mengakses, memberi akses dan mengontrol serta menginput data pada keseluruhan halaman dalam website ini.
@@ -443,7 +441,7 @@
                 <div class="panel-item p-3">
                     <div class="card-block">
                         <div class="testimonial-photo">
-                            <img src="assets/images/waitstaff-240x156.jpg" alt="" title="">
+                            <img src="assets/images/waitstaff-240x156.jpg" alt="User" title="">
                         </div>
                         <p class="mbr-text mbr-fonts-style display-7">
                            User Pengguna biasa yang hanya dapat mengakses halaman Beranda dan menunggu akses baru dari Administrator.
@@ -517,7 +515,7 @@
                         </div>
             
                         <span class="input-group-btn">
-                            <button href="" type="submit" class="btn btn-primary btn-form display-4">SEND FORM</button>
+                            <button href="" type="submit" class="btn btn-primary btn-form display-4"><span class="mbri-success mbr-iconfont mbr-iconfont-btn"></span>SEND FORM</button>
                         </span>
                     </form>
             </div>
@@ -645,7 +643,7 @@
   <script src="assets/theme/js/script.js"></script>
   <script src="assets/slidervideo/script.js"></script>
   <script src="assets/formoid/formoid.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="{{asset('js/sweetalert.min.js')}}"></script>
   @include('sweet::alert')
 
   

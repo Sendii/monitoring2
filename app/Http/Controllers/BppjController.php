@@ -202,7 +202,7 @@ class BppjController extends Controller
         $edit->no_ppbj = $r->input('noppbj');
         $edit->tgl_permintaan_ppbj = $r->input('tglpermintaanppbj');
         $edit->tgl_dibutuhkan_ppbj = $r->input('tgldibutuhkanppbj');
-        $edit->namapengadaan = $r->input('jenispengadaan'); 
+        $edit->namapengadaan = $r->input('jenispengadaan');
 
         $edit->save();
 

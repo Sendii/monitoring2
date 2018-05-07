@@ -214,7 +214,7 @@
               </div>
               <!-- /.box-body -->
               <div class="box-footer text-center">
-                <a href="javascript:void(0)" class="uppercase">View All Products</a>
+                <a href="javascript:void(0)" class="uppercase">View All Users</a>
               </div>
               <!-- /.box-footer -->
             </div>
@@ -286,10 +286,17 @@
                         <div class="icon">
                           <i class="fa fa-female"></i>
                         </div>
-                        @if(Auth::user() && Auth::user()->akses == ['Kasubag Pusat'] || ['Kasubag QA'] || ['Kasubag Cabang'])
+                        @if(Auth::user() && Auth::user()->akses == 'Kasubag Pusat')
+                        <a href="{{url('#kasubag')}}" class="small-box-footer">Anda adalah seorang 'Kepala Sub Bagian' <i class="fa fa-arrow-circle-right"></i></a>
+                        @endif
+
+                        @if(Auth::user() && Auth::user()->akses == 'Kasubag QA')
+                        <a href="{{url('#kasubag')}}" class="small-box-footer">Anda adalah seorang 'Kepala Sub Bagian' <i class="fa fa-arrow-circle-right"></i></a>
+                        @endif
+                        @if(Auth::user() && Auth::user()->akses == 'Kasubag Cabang')
                         <a href="{{url('#kasubag')}}" class="small-box-footer">Anda adalah seorang 'Kepala Sub Bagian' <i class="fa fa-arrow-circle-right"></i></a>
                         @else
-                        <a href="#" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+                        <a href="#" class="small-box-footer">Lihat Selengkapnya <i class="fa fa-arrow-circle-right"></i></a> 
                         @endif
                       </div>
                     </div>
@@ -322,15 +329,11 @@
         </div>
         <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
-      </script>
-      <script type="text/javascript" src="{{asset('js/charts/dashboard.js')}}"></script>
-      <script type="text/javascript" src="{{asset('js/charts/morris.min.js')}}"></script>
-      <script type="text/javascript" src="{{asset('js/charts/raphael.min.js')}}"></script>
-      <script type="text/javascript" src="{{asset('js/charts/jquery.min.js')}}"></script>
+      <script src="{{asset('js/sweetalert.min.js')}}"></script>
       <script type="text/javascript">
         $(document).ready(function() {
           $('#example').DataTable();
         });
       </script>
-</body>
-</html>
+    </body>
+    </html>

@@ -9,10 +9,7 @@
         text-align: center;
     }
 </style>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-
+<link rel="stylesheet" type="text/css" href="{{asset('css/sweetalert.css')}}">
 <body class="hold-transition skin-blue sidebar-mini">
     @include('sidebar')
     <!-- Content Wrapper. Contains page content -->
@@ -38,7 +35,6 @@
                                             <th class="center">Jabatan</th>
                                             <th class="center">No. Telepon</th>
                                             @if(Auth::user() && Auth::user()->akses == 'Admin')
-                                            @elseif(Auth::user() && Auth::user()->akses == 'Kadiv')
                                             <th class="center">Ubah Data</th>
                                             <th class="center">Lihat PPBJ</th>
                                             <!-- Ini kosong jika bukan admin -->
@@ -56,7 +52,6 @@
                                                 <td class="center">{{ $jabatan }}</td>
                                                 <td class="center">{{$key->notelp}}</td>
                                                 @if(Auth::user() && Auth::user()->akses == 'Admin')
-                                                @elseif(Auth::user() && Auth::user()->akses == 'Kadiv')
                                                     <td class="center"><a href="{{route('editPegawai', [$key->id_pegawai])}}"><i class="fa fa-edit" aria-hidden="true"> </i> Ubah Data</a></td>
                                                     <td class="center"><a href="{{url('pegawai/ppbjs', [$key->namapegawai])}}"><i class="fa fa-edit"></i>Lihat PPBJ</a></td>
                                                 @else
@@ -91,6 +86,7 @@
     </div>
     <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/sweetalert.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#example').DataTable();

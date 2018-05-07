@@ -15,7 +15,7 @@ Route::get('/', function () {
 	return view('landing-page');
 });
 // Route::get('pagenotfound', ['as' => 'notfound', 'uses' => 'HomeController@pagenotfound']);
-Route::get('test', 'HomeController@getChart');
+Route::get('chart', 'HomeController@getChart')->middleware('auth');
 Route::post('/', 'HomeController@contactme')->name('contactme');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
@@ -27,7 +27,10 @@ Route::get('ppbjpusat', 'BppjController@viewppbjpusat')->name('viewppbjpusat');
 Route::get('/info','HomeController@info');
 
 Route::middleware(['kadiv'], 'auth')->group(function () {
-	Route::get('/monitoring', 'MonitoringController@allMonitoring')->name('allMonitoring');
+	Route::prefix('monitoring')->group(function() {
+		Route::get('/', 'MonitoringController@allMonitoring')->name('allMonitoring');
+		Route::get('ppbj/no_spph/{no_spph2}', 'MonitoringController@nossph2')->name('satukontrak2');
+	});
 });
 Route::middleware(['publicpeople'])->group(function () {
 	Route::get('userspeople', 'HomeController@userpeople')->name('userpeople');
@@ -38,6 +41,7 @@ Route::middleware([['admin']||['kadiv'], 'auth'])->group(function () {
 	Route::get('/allUnit', 'UnitKerjaController@allUnit')->name('allUnit');
 	Route::get('/alluser', 'HomeController@alluser')->name('alluser');
 	Route::get('/viewAlldata/{id}', 'MonitoringController@viewAlldata')->name('viewAlldata');
+	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
 	Route::get('/alljenis', 'PengadaanController@alljenis')->name('alljenis');
 	Route::get('/allsaran', 'HomeController@allsaran')->name('allsaran');
 	Route::get('/viewsaran/{id}', 'HomeController@viewsaran');
@@ -78,14 +82,13 @@ Route::middleware([['admin']||['kadiv'], 'auth'])->group(function () {
 Route::middleware(['admin'], ['auth'])->group(function () {
 	Route::get('/admin', 'HomeController@index')->name('home');
 	Route::post('realisasiPpbj', 'BppjController@prosesrealisasi')->name('prosesrealisasi');
-	Route::get('/allPpbj', 'BppjController@allPpbj')->name('allPpbj');
 	Route::get('/allPpbj/kd9', 'BppjController@allPpbjkd9')->name('allPpbjkd9');
 	Route::get('/allPpbj/sd9', 'BppjController@allPpbjsd9')->name('allPpbjsd9');
 	Route::get('/allPpbj/ld9', 'BppjController@allPpbjld9')->name('allPpblkd9');
 	Route::get('/inputPpbj', 'BppjController@addPpbj');
+	Route::post('/savePpbj/', 'BppjController@savePpbj');
 	Route::get('inputPpbjs/{id}', 'PenugasanController@addPpbjs');
 	Route::post('savePpbjs/{id}', 'PenugasanController@savePpbjs');
-	Route::post('/savePpbj/', 'BppjController@savePpbj');
 	Route::get('/editPpbj/{id}','BppjController@editPpbj')->name('editPpbj');
 	Route::post('/editPpbj/', 'BppjController@updatePpbj')->name('updatePpbj');
 	Route::get('/allPpbj/delete/{id}','BppjController@delete_ppbj')->name('delete_ppbj');

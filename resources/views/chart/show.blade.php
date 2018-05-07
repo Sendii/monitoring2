@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <button type="button" class="close" aria-label="Close">
+                <button type="button" data-dismiss="modal" class="close" aria-label="Close">
                   <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
               </button>
               <b><i>Lihat Report Data <br></i></b>

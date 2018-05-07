@@ -5,7 +5,7 @@
 <head>
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" background="github.png">
+<body class="hold-transition skin-blue sidebar-mini">
     {!! csrf_field() !!}
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

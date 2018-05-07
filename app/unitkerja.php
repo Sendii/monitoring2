@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class unitkerja extends Model
 {
-	// protected $primaryKey = 'id_unit';
+	protected $primaryKey = 'id_unit';
 	// public $incrementing = false;
 
 

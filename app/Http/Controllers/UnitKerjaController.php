@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\unitkerja;
 use App\barang;
 use App\pbbj;
+use Alert;
 
 class UnitKerjaController extends Controller
 {
@@ -30,6 +31,7 @@ class UnitKerjaController extends Controller
         $new->aa         = $r->input('unitkerja');
         $new->unit_kerja = $r->input('kantor');
         
+        Alert::success('Data UnitKerja baru telah ditambahkan', 'Berhasil!')->autoclose(1300);
         $new->save();
         
         return redirect()->route('allUnit');
@@ -48,7 +50,7 @@ class UnitKerjaController extends Controller
         
         $editunit->aa         = $r->input('namacabang');
         $editunit->unit_kerja = $r->input('unitkerja');
-        
+        Alert::success('Data Ppbj baru telah diedit', 'Berhasil!')->autoclose(1300);
         $editunit->save();
         return redirect()->route('allUnit');
     }

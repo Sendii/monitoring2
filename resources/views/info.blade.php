@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html >
 <head>
-  <!-- Site made with Mobirise Website Builder v4.6.7, https://mobirise.com -->
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v4.6.7, mobirise.com">
@@ -45,7 +44,7 @@
                          <img src="assets/images/divsum-sucofindo-4-170x96.png" alt="Divisi-Umum" title="DivSum" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="https://mobirise.com">Team</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="#">Team</a></span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -58,7 +57,7 @@
     </nav>
 </section>
 
-<section class="engine"><a href="https://mobirise.ws/b">best free web site creator</a></section><section class="header5 cid-qOpuw0Vs7J mbr-fullscreen mbr-parallax-background" id="header5-o">
+<section class="engine"><a href="#">best free web site creator</a></section><section class="header5 cid-qOpuw0Vs7J mbr-fullscreen mbr-parallax-background" id="header5-o">
 
     
 
@@ -186,15 +185,6 @@
                         <a href="https://www.facebook.com/adityarifai1404" target="_blank">
                             <span class="p-1 socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
                         </a>
-                        <a href="https://www.linkedin.com/in/mobirise" target="_blank">
-                            
-                        </a>
-                        <a href="https://www.instagram.com/mobirise/" target="_blank">
-                            
-                        </a>
-                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">    
-                            
-                        </a>
                     </div>
                 </div>
             </div><div class="team-item col-lg-3 col-md-6">
@@ -216,15 +206,6 @@
                         <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
                             <span class="p-1 socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
                         </a>
-                        <a href="https://www.linkedin.com/in/mobirise" target="_blank">
-                            
-                        </a>
-                        <a href="https://www.instagram.com/mobirise/" target="_blank">
-                            
-                        </a>
-                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">    
-                            
-                        </a>
                     </div>
                 </div>
             </div><div class="team-item col-lg-3 col-md-6">
@@ -245,15 +226,6 @@
                         </a>
                         <a href="https://www.facebook.com/Sendaaaay" target="_blank">
                             <span class="p-1 socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/mobirise" target="_blank">
-                            
-                        </a>
-                        <a href="https://www.instagram.com/mobirise/" target="_blank">
-                            
-                        </a>
-                        <a href="https://www.youtube.com/channel/UCt_tncVAetpK5JeM8L-8jyw" target="_blank">    
-                            
                         </a>
                     </div>
                 </div>

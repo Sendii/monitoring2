@@ -4,7 +4,7 @@
 <head>
     @extends('layouts.adminlte')
 </head>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{{asset('css/dataTables.bootstrap.min.css')}}">
 <style type="text/css">
 .center {
     text-align: center;
@@ -96,11 +96,14 @@
 </div>
 <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
+<script type="text/javascript" href=" {{asset('js/jquery-3.2.1.min.js')}} "></script>
+<script src="{{asset('js/sweetalert.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example').DataTable();
     });
 </script>
+@include('sweet::alert')
 </body>
 
 </html>

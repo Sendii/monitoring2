@@ -48,4 +48,10 @@ class MonitoringController extends Controller
         // $data['unit'] = \App\unitkerja::where('id_unit', $id)->first();
         return view('kadiv.view')->with($data);
     }
+
+    public function nossph2($no_spph2)
+    {
+        $data['spph2'] = prosespengadaan::where('no_spph2', '=', $no_spph2)->get();
+        dd($data['spph2']);
+    }
 }

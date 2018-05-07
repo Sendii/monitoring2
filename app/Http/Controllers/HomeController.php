@@ -143,8 +143,7 @@ class HomeController extends Controller
     }
 
     public function getChart() {
-     $ppbjapprove = prosespengadaan::where('status', '=', 'Accepted')
-     ->get();
+     $ppbjapprove = prosespengadaan::where('status', '=', 'Accepted')->get();
      $chartapprove = Charts::database($ppbjapprove, 'bar', 'highcharts')
      ->title(" ")
      ->elementLabel("Total Ppbj")
@@ -152,8 +151,7 @@ class HomeController extends Controller
      ->responsive(false)
      ->groupByMonth(date('Y'), true);
 
-     $ppbjnoapprove = prosespengadaan::where('status', '=', 'NonAccepted')
-     ->get();
+     $ppbjnoapprove = prosespengadaan::where('status', '=', 'NonAccepted')->get();
      $chartnoapprove = Charts::database($ppbjnoapprove, 'bar', 'highcharts')
      ->title(" ")
      ->elementLabel("Total Ppbj")
@@ -161,15 +159,14 @@ class HomeController extends Controller
      ->responsive(false)
      ->groupByMonth(date('Y'), true);
 
-     $ppbjPegawai = prosespengadaan::orWhereNotNull('selesai1')
-                              ->whereNotNull('mulaippbj1')
-                              ->whereNotNull('mulaippbj2')
-                              ->whereNotNull('mulaippbj3')
-                              ->whereNotNull('tgl_spph2')
-                              ->orWhereNotNull('selesai2')
-                              ->whereNotNull('tgl_spph3')
-                              ->orWhereNotNull('selesai3')
-     ->get();
+     if(prosespengadaan::whereNotNull('mulaippbj1')) {
+        $ppbjPegawai = prosespengadaan::whereNotNull('selesai1')->get();
+    }elseif(prosespengadaan::whereNotNull('mulaippbj2')) {
+        $ppbjPegawai = prosespengadaan::whereNotNull('selesai2')->get();
+    }elseif(prosespengadaan::whereNotNull('mulaippbj3')) {
+        $ppbjPegawai = prosespengadaan::whereNotNull('selesai3')->get();
+    }
+
      $chartppbjPegawai = Charts::database($ppbjPegawai, 'bar', 'highcharts')
      ->title(" ")
      ->elementLabel("Total Ppbj Selesai")
@@ -177,13 +174,14 @@ class HomeController extends Controller
      ->responsive(false)
      ->groupByMonth(date('Y'), true);
 
-     $ppbjPegawai2 = prosespengadaan::orWhere('selesai1')
-                              ->orWhere('selesai2')
-                              ->orWhere('selesai3')
-                              ->orWhere('mulaippbj1')
-                              ->orWhere('mulaippbj2')
-                              ->orWhere('mulaippbj3')
-     ->get();
+    if(prosespengadaan::whereNotNull('mulaippbj1')) {
+        $ppbjPegawai2 = prosespengadaan::where('selesai1')->get();
+    }elseif(prosespengadaan::whereNotNull('mulaippbj2')) {
+        $ppbjPegawai2 = prosespengadaan::where('selesai2')->get();
+    }elseif(prosespengadaan::whereNotNull('mulaippbj3')) {
+        $ppbjPegawai2 = prosespengadaan::where('selesai3')->get();
+    }
+
      $chartppbjPegawai2 = Charts::database($ppbjPegawai2, 'bar', 'highcharts')
      ->title(" ")
      ->elementLabel("Total Ppbj Tidak Selesai")

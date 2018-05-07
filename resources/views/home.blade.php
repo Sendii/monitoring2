@@ -5,7 +5,7 @@
     @extends('layouts.adminlte')
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" background="github.png">
+<body class="hold-transition skin-blue sidebar-mini">
     {!! csrf_field() !!} @include('sidebar')
     <div class="content-wrapper">
         <div class="container-fluid spark-screen">

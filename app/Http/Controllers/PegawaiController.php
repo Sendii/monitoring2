@@ -38,11 +38,9 @@ class PegawaiController extends Controller
         $new->namapegawai = $r->input('namapegawai');
         $new->id_jabatan  = $r->input('id_jabatan');
         $new->notelp      = $r->input('nomortelepon');
-        $new->id          = $new->id_pegawai;
         
         Alert::success('Data Pegawai telah ditambahkan', 'Berhasil!')->autoclose(1300);
         $new->save();
-        Session::forget('sweet_alert');
         return redirect()->route('allPegawai');
     
     }
@@ -72,7 +70,7 @@ class PegawaiController extends Controller
         $pegawai = pbbj::where('id_pegawai', '=', $namapegawai)->get();
         $ppbj = pbbj::select('no_ppbj')->groupBy('no_ppbj')->where('id_pegawai', $namapegawai)->get();
         $prosespengadaan = prosespengadaan::get();
-        $cekpegawai = prosespengadaan::where('id_pegawai', $namapegawai)->get();
+        $cekpegawai = prosespengadaan::where('id_pegawai', $namapegawai)->first();
         return view('pegawai.ppbj', [
             'ppbjPegawai' => $pegawai,
             'ppbj' => $ppbj,

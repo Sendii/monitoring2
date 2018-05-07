@@ -4,9 +4,6 @@
 <head>
     @extends('layouts.adminlte')
 </head>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 <style type="text/css">
 .center {
     text-align: center;
@@ -24,9 +21,7 @@
                     <div class="box">
                         <div class="box-header">
                             <center>
-                                @foreach($cekpegawais as $cek)
-                                <h3 style="font-size: 25px" class="box-title">Data Ppbj {{$cek->id_pegawai}}</h3>
-                                @endforeach
+                                <h3 style="font-size: 25px" class="box-title">Data Ppbj {{$cekpegawais->id_pegawai}}</h3>
                             </center>
                             <div class="container">
                                 @include('errors.message')
@@ -59,12 +54,10 @@
                                                             <button type="button" class="close" aria-label="Close">
                                                               <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
                                                           </button>
-                                                          @foreach($cekpegawais as $cek)
                                             <i>Lihat Ppbj Berdasarkan Perhitungan Hari <br></i>
-                                            <a href="{{url('ppbjK9hari', [$cek->id_pegawai])}}" class="btn btn-primary">Ppbj <9 Hari</a>
-                                            <a href="{{url('ppbj9hari', [$cek->id_pegawai])}}" class="btn btn-primary">Ppbj 9 Hari</a>&nbsp;
-                                            <a href="{{url('ppbjL9hari', [$cek->id_pegawai])}}" class="btn btn-primary">Ppbj >9 Hari</a>&nbsp;
-                                                @endforeach
+                                            <a href="{{url('ppbjK9hari', [$cekpegawais->id_pegawai])}}" class="btn btn-primary">Ppbj <9 Hari</a>
+                                            <a href="{{url('ppbj9hari', [$cekpegawais->id_pegawai])}}" class="btn btn-primary">Ppbj 9 Hari</a>&nbsp;
+                                            <a href="{{url('ppbjL9hari', [$cekpegawais->id_pegawai])}}" class="btn btn-primary">Ppbj >9 Hari</a>&nbsp;
                                                     </div>
                                                     <div class="modal-footer d-flex justify-content-center">
                                                         <center><a href="{{url('allPegawai')}}" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i></a></center>
@@ -117,11 +110,10 @@
                         });
                     });
                 </script>
-                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
                 <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
                 <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
             </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+            <script src="{{asset('js/sweetalert.min.js')}}"></script>
             <script type="text/javascript">
                 $(document).ready(function() {
                     $('#example').DataTable();

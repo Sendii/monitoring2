@@ -21,15 +21,30 @@
 					<i class="fa fa-close"></i>
 					@endif
 				</div>
-				<input type="text" class="form-control" id="tgl_spph2" placeholder="Tgl. Spph" name="">
+				<input type="text" class="form-control" id="tgl_spph2" placeholder="Tgl. Spphs" name="">
 			</div>
-			@if($key->selesaispph2 != "")
-			<label class="col-sm-6 control-label" id="selesaispph2"><i class="fa fa-arrow-right"></i>{{$key->selesaispph2}}</label><br>
+			@if(!empty($key->selesaispph2))
+			<label class="col-sm-6 control-label" id="selesaispph2"><i class="fa fa-arrow-right"></i></label>
 			@else
 			<label class="col-sm-8 control-label">Belum Selesai</label>
-			@endif
+			@endif	<br><br>
 
-			<input type="text" class="form-control" id="tgl_etp2" placeholder="Tgl. Etp" name=""><br>
+			<div class="input-group text">
+				<div class="input-group-addon">
+					@if($key->tgl_etp2 != "")
+					<i class="fa fa-check"></i>
+					@elseif($key->tgl_etp2 == "")
+					<i class="fa fa-close"></i>
+					@endif
+				</div>
+				<input type="text" class="form-control" id="tgl_etp2" placeholder="Tgl. Etp" name="">
+			</div>
+			@if(!empty($key->selesaietp2))
+			<label class="col-sm-6 control-label" id="selesaietp2"><i class="fa fa-arrow-right"></i></label>
+			@else
+			<label class="col-sm-8 control-label">Belum Selesai</label>
+			@endif <br><br>
+
 			<div class="input-group text">
 				<div class="input-group-addon">
 					@if($key->no_pmn2 != "")
@@ -51,7 +66,7 @@
 				</div>
 				<input type="text" class="form-control" id="tgl_pmn2" placeholder="Tgl Pmn" name="">
 			</div>
-			@if($key->selesaipmn2 != "")
+			@if(!empty($key->selesaipmn2))
 			<label class="col-sm-6 control-label" id="selesaipmn2"><i class="fa fa-arrow-right"></i>{{$key->selesaipmn2}}</label><br>
 			@else
 			<label class="col-sm-8 control-label" style="padding-left: 1px;">Belum Selesai</label><br>
@@ -77,13 +92,13 @@
 				</div>
 				<input type="text" class="form-control" id="tgl_kon2" placeholder="Tgl. Kon" name="">
 			</div>
-			@if($key->selesaikon2 != "")
+			@if(!empty($key->selesaikon2))
 			<label class="col-sm-6 control-label" id="selesaikon2"><i class="fa fa-arrow-right"></i>{{$key->selesaikon2}}</label><br>
 			@else
 			<label class="col-sm-8 control-label" style="padding-left: 1px;">Belum Selesai</label><br>
-			@endif <br><br>
-			<a class="btn btn-primary">s</a>
+			@endif <br>
 		</div>
+
 		<!-- kedua -->
 		<div class="col-sm-6">
 			<div class="input-group text">
@@ -107,13 +122,28 @@
 				</div>
 				<input type="text" class="form-control" id="tgl_spph3" placeholder="Tgl. Spph" name="">
 			</div>
-			@if($key->selesaispph3 != "")
-			<label class="col-sm-6 control-label"><i class="fa fa-arrow-right"></i>{{$key->selesaispph3}}</label><br>
+			@if(!empty($key->selesaispph3))
+			<label class="col-sm-6 control-label" id="selesaispph3"><i class="fa fa-arrow-right"></i></label>
 			@else
 			<label class="col-sm-8 control-label">Belum Selesai</label>
-			@endif
+			@endif <br><br>
 
-			<input type="text" class="form-control" id="tgl_etp3" placeholder="Tgl. Etp" name=""><br>
+			<div class="input-group text">
+				<div class="input-group-addon">
+					@if($key->tgl_etp3 != "")
+					<i class="fa fa-check"></i>
+					@elseif($key->tgl_etp3 == "")
+					<i class="fa fa-close"></i>
+					@endif
+				</div>
+				<input type="text" class="form-control" id="tgl_etp3" placeholder="Tgl. Etp" name="">
+			</div>
+			@if(!empty($key->selesaietp3))
+			<label class="col-sm-6 control-label" id="selesaietp3"><i class="fa fa-arrow-right"></i></label>
+			@else
+			<label class="col-sm-8 control-label">Belum Selesai</label>
+			@endif <br><br>
+
 			<div class="input-group text">
 				<div class="input-group-addon">
 					@if($key->no_pmn3 != "")
@@ -135,8 +165,8 @@
 				</div>
 				<input type="text" class="form-control" id="tgl_pmn3" placeholder="Tgl Pmn" name="">
 			</div>
-			@if($key->selesaipmn3 != "")
-			<label class="col-sm-6 control-label"><i class="fa fa-arrow-right"></i>{{$key->selesaipmn3}}</label><br>
+			@if(!empty($key->selesaipmn3))
+			<label class="col-sm-6 control-label" id="selesaipmn3"><i class="fa fa-arrow-right"></i></label><br>
 			@else
 			<label class="col-sm-8 control-label" style="padding-left: 1px;">Belum Selesai</label><br>
 			@endif <br>
@@ -161,11 +191,11 @@
 				</div>
 				<input type="text" class="form-control" id="tgl_kon3" placeholder="Tgl. Kon" name="">
 			</div>
-			@if($key->selesaikon3 != "")
-			<label class="col-sm-6 control-label"><i class="fa fa-arrow-right"></i>{{$key->selesaikon3}}</label><br>
+			@if(!empty($key->selesaikon3))
+			<label class="col-sm-6 control-label" id="selesaikon3"><i class="fa fa-arrow-right"></i></label>
 			@else
-			<label class="col-sm-8 control-label" style="padding-left: 1px;">Belum Selesai</label><br>
-			@endif <br>
+			<label class="col-sm-8 control-label" style="padding-left: 1px;">Belum Selesai</label>
+			@endif <br> <br>
 		</div>
 	</div>
 </div>

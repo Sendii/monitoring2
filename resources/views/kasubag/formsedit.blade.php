@@ -20,7 +20,7 @@
     display: block;
 }
 </style>
-<body class="hold-transition skin-blue sidebar-mini" background="github.png">
+<body class="hold-transition skin-blue sidebar-mini">
     <div class="content-wrapper">
         <div class="container-fluid spark-screen">
             <div class="row">
@@ -920,29 +920,29 @@
                                         var rowkontrak3 = $('input[name="rowkontrak3"]').val();
                                         var tagkontrak3 = '';
                                         for (i = 1; i <= rowkontrak3; i++) {
-                                            tagkontrak3 += '<tr><td><input type="text" name="namakontrak3[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak3[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak3' + i + '" required></td><td><input type="number" name="hargakontrak3[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga3' + i + '" required></td><td><input type="text" name="totalkontrak3[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total3' + i + '" readonly></td></tr>';
+                                            tagkontrak3 += '<tr><td><input type="text" name="namakontrak3[]" class="form-control" placeholder="Nama Barang/Jasa" required></td><td><input type="number" name="qtykontrak3[]" placeholder="Jumlah Barang/Jasa" class="form-control qtykontrak qtykontrak' + i + '" required></td><td><input type="number" name="hargakontrak3[]" placeholder="Harga Satuan" id="amount"  class="form-control input-sm text-right amount harga harga' + i + '" required></td><td><input type="text" name="totalkontrak3[]" placeholder="Total Harga"  class="form-control input-sm text-right amount total total' + i + '" readonly></td></tr>';
                                         }
                                         $('.tbody3').html(tagkontrak3);
                                         subtotalkontrak3();
                                     });
 
                                     function subtotalkontrak3() {
-                                        $('.qtykontrak3, .harga3').on('input', function() {
-                                            var rowkontrak3 = $('.tbody3 tr').length,
+                                        $('.qtykontrak, .harga').on('input', function() {
+                                            var rowkontrak = $('.tbody tr').length,
                                             qtykontrak = '',
                                             harga = '',
                                             total = '',
                                             jumlah = '',
-                                            subtotalkontrak3 = '';
+                                            subtotalkontrak = '';
                                             for (i = 1; i <= rowkontrak; i++) {
-                                                var qtykontrak = $('.qtykontrak3' + i).val(),
-                                                harga = $('.harga3' + i).val(),
+                                                var qtykontrak = $('.qtykontrak' + i).val(),
+                                                harga = $('.harga' + i).val(),
                                                 total = qtykontrak * harga;
-                                                $('.total3' + i).val(total);
-                                                var jumlah = $('.total3' + i).val();
-                                                subtotalkontrak3 = +subtotalkontrak3 + +jumlah;
+                                                $('.total' + i).val(total);
+                                                var jumlah = $('.total' + i).val();
+                                                subtotalkontrak = +subtotalkontrak + +jumlah;
                                             }
-                                            $('.subtotalkontrak3').val(subtotalkontrak3);
+                                            $('.subtotalkontrak').val(subtotalkontrak);
                                         });
                                     }
                                 });

@@ -4,8 +4,6 @@
 <head>
     @extends('layouts.adminlte')
 </head>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
 <style type="text/css">
     .center {
         text-align: center;
@@ -51,7 +49,7 @@
                                     <tr role="row" class="odd">
                                         <td class="center">{{$key->id}}</td>
                                         <td class="center">
-                                            <center><a href="#" data-no_ppbj="{{$key->getPpbj->no_ppbj}}" data-no_spph2="{{$key->no_spph2}}" data-tgl_spph2="{{$key->tgl_spph2}}" data-selesaispph2="{{$key->selesaispph2}}" data-tgl_etp2="{{$key->tgl_etp2}}" data-selesaietp2="{{$key->selesaietp2}}" data-no_pmn2="{{$key->no_pmn2}}" data-tgl_pmn2="{{$key->tgl_pmn2}}" data-selesaipmn2="{{$key->selesaipmn2}}" data-no_kon2="{{$key->no_kon2}}" data-tgl_kon2="{{$key->tgl_kon2}}" data-selesaikon2="{{$key->selesaikon2}}" data-no_spph3="{{$key->no_spph3}}" data-tgl_spph3="{{$key->tgl_spph3}}" data-tgl_etp3="{{$key->tgl_etp3}}" data-no_pmn3="{{$key->no_pmn3}}" data-tgl_pmn3="{{$key->tgl_pmn3}}" data-no_kon3="{{$key->no_kon3}}" data-tgl_kon3="{{$key->tgl_kon3}}" data-toggle="modal" data-target="#modalDataPpbj"><i class="fa fa-chevron-down"></i></a></center>
+                                            <center><a href="#" data-no_ppbj="{{$key->getPpbj->no_ppbj}}" data-no_spph2="{{$key->no_spph2}}" data-tgl_spph2="{{$key->tgl_spph2}}" data-selesaispph2="{{$key->selesaispph2}}" data-tgl_etp2="{{$key->tgl_etp2}}" data-selesaietp2="{{$key->selesaietp2}}" data-no_pmn2="{{$key->no_pmn2}}" data-tgl_pmn2="{{$key->tgl_pmn2}}" data-selesaipmn2="{{$key->selesaipmn2}}" data-no_kon2="{{$key->no_kon2}}" data-tgl_kon2="{{$key->tgl_kon2}}" data-selesaikon2="{{$key->selesaikon2}}" data-no_spph3="{{$key->no_spph3}}" data-tgl_spph3="{{$key->tgl_spph3}}" data-selesaispph3="{{$key->selesaispph3}}" data-tgl_etp3="{{$key->tgl_etp3}}" data-selesaietp3="{{$key->selesaietp3}}" data-no_pmn3="{{$key->no_pmn3}}" data-tgl_pmn3="{{$key->tgl_pmn3}}" data-selesaipmn3="{{$key->selesaipmn3}}" data-no_kon3="{{$key->no_kon3}}" data-tgl_kon3="{{$key->tgl_kon3}}" data-selesaikon3="{{$key->selesaikon3}}" data-toggle="modal" data-target="#modalDataPpbj"><i class="fa fa-chevron-down"></i></a></center>
                                             {{$key->created_at}}
                                         </td>
                                         <td class="center">{{ $pegawai }}
@@ -167,13 +165,15 @@
                                             <center><span class="label label-success">Proses Selesai&nbsp;<i class="fa fa-check"></i></span></center>
                                             @endif
                                         </td>
-                                        <div class="modal fade" id="modalDataPpbj" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal fade in" id="modalDataPpbj" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header text-center">
-                                                            <button type="button" class="close" aria-label="Close">
-                                                              <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+                                                            <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                                                              <span aria-hidden="true">&times;</span>
                                                           </button>
+                                                          <h4 class="modal-title" id="myModalLabel">Data Ppbj</h4>
+                                                      </div>
                                                           <div class="modal-body">
                                                               @include('kadiv.viewppbj')
                                                           </div>
@@ -182,7 +182,6 @@
                                                         <!-- <center><a href="{{url('allPpbj')}}" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i></a></center> -->
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     </tr>
                                     @else @endif @endforeach
@@ -204,18 +203,17 @@
     </footer> -->
     </div>
     </div>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script type="text/javascript" src="{{asset('js/datatable/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/datatable/dataTables.bootstrap.min.js')}}"></script>
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="{{asset('js/sweetalert.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#example').DataTable();
         });
     </script>
     <script type="text/javascript">
-        $('#modalDataPpbj').on('click.bs.modal', function(event) {
+        $('#modalDataPpbj').on('show.bs.modal', function(event) {
             console.log('Modal opened');
 
             var button = $(event.relatedTarget)
@@ -239,6 +237,11 @@
             var tgl_pmn3 = button.data('tgl_pmn3')
             var no_kon3 = button.data('no_kon3')
             var tgl_kon3 = button.data('tgl_kon3')
+            var selesaispph3 = button.data('selesaispph3')
+            var selesaietp3 = button.data('selesaietp3')
+            var selesaipmn3 = button.data('selesaipmn3')
+            var selesaikon3 = button.data('selesaikon3')
+
 
             var modal = $(this)
 
@@ -250,7 +253,10 @@
             modal.find('.modal-body .form-group #tgl_pmn2').val(tgl_pmn2);
             modal.find('.modal-body .form-group #no_kon2').val(no_kon2);
             modal.find('.modal-body .form-group #tgl_kon2').val(tgl_kon2);
-            modal.find('.modal-body .form-group #selesaispph2').val(selesaispph2);
+            modal.find('.modal-body .form-group #selesaispph2').text(selesaispph2);
+            modal.find('.modal-body .form-group #selesaietp2').text(selesaietp2);
+            modal.find('.modal-body .form-group #selesaipmn2').text(selesaipmn2);
+            modal.find('.modal-body .form-group #selesaikon2').text(selesaikon2);
 
             modal.find('.modal-body .form-group #no_spph3').val(no_spph3);
             modal.find('.modal-body .form-group #tgl_spph3').val(tgl_spph3);
@@ -259,6 +265,11 @@
             modal.find('.modal-body .form-group #tgl_pmn3').val(tgl_pmn3);
             modal.find('.modal-body .form-group #no_kon3').val(no_kon3);
             modal.find('.modal-body .form-group #tgl_kon3').val(tgl_kon3);
+            modal.find('.modal-body .form-group #selesaispph3').text(selesaispph3);
+            modal.find('.modal-body .form-group #selesaietp3').text(selesaietp3);
+            modal.find('.modal-body .form-group #selesaipmn3').text(selesaipmn3);
+            modal.find('.modal-body .form-group #selesaikon3').text(selesaikon3);
+
         })
     </script>
 </body>
